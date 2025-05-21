@@ -12,18 +12,10 @@ export default function CVPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-blue-900">ALI DABO</h1>
-            <p className="text-blue-600">Développeur Full Stack JavaScript</p>
+            <p className="text-blue-600">Développeur Web</p>
           </div>
         </div>
-        {/* Le bouton est maintenant une balise <a> pour le téléchargement */}
-        <a
-          href="/Big_data_data_Science_IGL3.pdf" // Chemin vers votre fichier PDF dans le dossier public
-          download="Ali_Dabo_CV.pdf" // Nom du fichier lors du téléchargement (facultatif, mais recommandé)
-          className="my-3 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-colors duration-300 ml-auto w-fit" // w-fit pour que le bouton ne prenne pas toute la largeur
-        >
-          <Download size={18} />
-          Télécharger CV
-        </a>
+
       </div>
 
       {/* Profile section */}
