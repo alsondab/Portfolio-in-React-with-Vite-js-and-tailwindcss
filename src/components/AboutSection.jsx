@@ -1,21 +1,19 @@
 import { useState, useEffect, useRef } from "react";
-import { Briefcase, Code, User, ChevronRight, FileDown } from "lucide-react";
+import { Briefcase, Code, User, ChevronRight, Eye } from "lucide-react"; // Import Eye icon
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion"; // No need for eslint-disable-next-line here
+import { motion } from "framer-motion";
 
 export const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    // Capture the current value of sectionRef.current
     const currentSectionRef = sectionRef.current;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Only unobserve if currentSectionRef exists, using the captured value
           if (currentSectionRef) {
             observer.unobserve(currentSectionRef);
           }
@@ -24,16 +22,16 @@ export const AboutSection = () => {
       { threshold: 0.2 }
     );
 
-    if (currentSectionRef) { // Use the captured value
+    if (currentSectionRef) {
       observer.observe(currentSectionRef);
     }
 
     return () => {
-      if (currentSectionRef) { // Use the captured value in cleanup
+      if (currentSectionRef) {
         observer.unobserve(currentSectionRef);
       }
     };
-  }, []); // Dependancy array is correct, runs once on mount
+  }, []);
 
   // Animation variants
   const containerVariants = {
@@ -128,12 +126,18 @@ export const AboutSection = () => {
                 <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
 
+              {/* Bouton "Voir le CV en ligne" mis à jour pour la navigation */}
               <a
-                href="/my-cv"
-                className="px-6 py-3 rounded-full border border-primary/40 text-foreground hover:bg-primary/10 transition-all duration-300 flex items-center justify-center gap-2 group"
+                href="/my-cv" // Lien direct vers la route /my-cv
+                className="px-6 py-3 rounded-full border border-primary/40 text-foreground hover:bg-primary/10 transition-all duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
               >
-                <FileDown className="h-4 w-4 transition-transform group-hover:translate-y-[2px]" />
-                <span>Télécharger CV</span>
+                {/* Icône "Eye" avec des animations */}
+                <Eye className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12 group-active:scale-125" />
+                <span>Voir le CV en ligne</span>
+                {/* Effet d'animation visuel (onde ou balayage) */}
+                <span className="absolute inset-0 bg-primary/20 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
+                {/* Autre petite animation pour l'état actif ou un clic */}
+                <span className="absolute inset-0 opacity-0 group-active:opacity-100 bg-primary/30 rounded-full blur-sm transition-opacity duration-100"></span>
               </a>
             </div>
           </motion.div>

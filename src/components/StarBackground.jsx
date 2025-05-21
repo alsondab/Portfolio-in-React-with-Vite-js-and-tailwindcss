@@ -1,158 +1,203 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 export const StarBackground = () => {
   const [isVisible, setIsVisible] = useState(false);
-
-  // Symboles et logos liés au développement web
-  const devIcons = [
-    "</>", // HTML
+  
+  // Symboles et logos professionnels liés au développement web
+  const devIcons = useMemo(() => [
     "</>", // HTML
     "{ }", // CSS/JS
-    "{ }", // CSS/JS
-    "</>", // HTML
-    "</>", // HTML
-    "</>", // HTML
-    "</>", // HTML
-    "</>", // HTML
-    "</>", // HTML
     "=>", // Arrow function
     "⚛", // React
-    "Δ", // Delta/Change (symbolise Angular)
-    "#", // Django/Python
-    "( )", // Parenthèses pour fonctions
-    "[]", // Tableaux/Arrays
-    "$", // jQuery/Variables
-  ];
+    "Δ", // Angular
+    "λ", // Lambda/Functional
+    "ƒ()", // Function notation
+    "#", // Hash/Django
+    "[]", // Arrays
+    "$", // Variables/jQuery
+    "++", // Increment
+    "||", // OR operator
+    "&&", // AND operator
+    "!!", // Double negation
+    "...", // Spread operator
+    "@", // Decorators
+    "~", // Bitwise NOT
+    "?:", // Ternary operator
+  ], []);
+  
+  // Extrait de code mieux formatés et plus variés
+  const codeSnippets = useMemo(() => [
+    {
+      language: "typescript",
+      code: `interface Project {
+  id: string;
+  title: string;
+  tags: string[];
+  demo?: string;
+  github?: string;
+  featured: boolean;
+}`,
+      position: "right-8 top-16",
+      size: "w-72",
+      delay: "0.6s",
+      color: "text-blue-400 dark:text-blue-500"
+    },
+    {
+      language: "javascript",
+      code: `const useProjects = () => {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    fetchProjects()
+      .then(data => {
+        setProjects(data);
+        setLoading(false);
+      });
+  }, []);
+  
+  return { projects, loading };
+};`,
+      position: "left-8 bottom-12",
+      size: "w-80",
+      delay: "0.8s",
+      color: "text-purple-400 dark:text-purple-500"
+    },
+    {
+      language: "css",
+      code: `.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill, minmax(300px, 1fr)
+  );
+  gap: 1.5rem;
+}
+
+.card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}`,
+      position: "right-10 bottom-20",
+      size: "w-72",
+      delay: "1s",
+      color: "text-green-400 dark:text-green-500"
+    },
+    {
+      language: "react",
+      code: `function ProjectCard({ project }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="card">
+      <h3>{project.title}</h3>
+      <div className="tags">
+        {project.tags.map(tag => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </div>
+    </motion.div>
+  );
+}`,
+      position: "left-1/4 top-20",
+      size: "w-80",
+      delay: "1.2s",
+      color: "text-yellow-400 dark:text-yellow-500"
+    },
+  ], []);
 
   useEffect(() => {
-    // Légère animation d'entrée
-    setIsVisible(true);
+    // Animation progressive d'entrée
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Gradient de fond subtil */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-background dark:from-background dark:via-background/95 dark:to-background" />
+      {/* Gradient de fond subtil et professionnel */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/95 dark:from-background/95 dark:via-background/98 dark:to-background" />
 
-      {/* Grille de fond */}
+      {/* Grille de fond avec opacité ajustée pour un look plus professionnel */}
       <div
         className={cn(
-          "absolute inset-0 opacity-0 transition-opacity duration-1000",
-          isVisible && "opacity-[0.03]"
+          "absolute inset-0 opacity-0 transition-opacity duration-2000",
+          isVisible && "opacity-[0.02] dark:opacity-[0.015]"
         )}
         style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)`,
-          backgroundSize: "30px 30px"
+          backgroundSize: "40px 40px"
         }}
       />
 
-      {/* Icônes de développement dispersées */}
+      {/* Icônes de développement avec animation améliorée */}
       {devIcons.map((icon, index) => (
         <div
           key={index}
           className={cn(
-            "absolute text-foreground dark:text-foreground/15 font-mono font-bold transition-opacity duration-1000 opacity-0",
+            "absolute text-foreground/50 dark:text-foreground/10 font-mono font-medium transition-all duration-2000 opacity-0 blur-[0.2px]",
             isVisible && "opacity-100"
           )}
           style={{
             left: `${5 + Math.random() * 90}%`,
             top: `${5 + Math.random() * 90}%`,
-            fontSize: `${Math.random() * 20 + 14}px`,
-            transform: `rotate(${Math.random() * 40 - 20}deg)`,
-            transitionDelay: `${index * 0.15}s`
+            fontSize: `${Math.random() * 16 + 10}px`,
+            transform: `rotate(${Math.random() * 30 - 15}deg)`,
+            transitionDelay: `${index * 0.1 + 0.2}s`,
+            transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)"
           }}
         >
           {icon}
         </div>
       ))}
 
-      {/* Lignes de code subtiles */}
+      {/* Extraits de code avec meilleure présentation et variété */}
+      {codeSnippets.map((snippet, index) => (
+        <div
+          key={index}
+          className={cn(
+            "absolute opacity-0 transition-all duration-1500 font-mono text-left text-xs rounded-md overflow-hidden backdrop-blur-sm bg-background/10 dark:bg-foreground/[0.01] shadow-sm",
+            snippet.position,
+            snippet.size,
+            isVisible && "opacity-[0.25] dark:opacity-[0.15]"
+          )}
+          style={{ 
+            transitionDelay: snippet.delay,
+            transform: isVisible ? "translateY(0)" : "translateY(10px)"
+          }}
+        >
+          <pre className={cn("p-2", snippet.color)}>
+            {snippet.code}
+          </pre>
+        </div>
+      ))}
+      
+      {/* Éléments graphiques subtils pour ajouter de la profondeur */}
       <div
         className={cn(
-          "absolute left-5 top-1/4 w-64 h-20 opacity-0 transition-opacity duration-1000 font-mono text-left text-xs",
-          isVisible && "opacity-[0.3]"
+          "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-0 transition-opacity duration-3000",
+          isVisible && "opacity-[0.02] dark:opacity-[0.01]"
         )}
-        style={{ transitionDelay: "0.8s" }}
-      >
-        <pre className="text-primary dark:text-primary">
-          {`function DevPortfolio() {
-            const skills = ['React', 'Angular', 'Django'];
-            return <Profile skills={skills} />;
-          }`}
-        </pre>
-      </div>
-
+        style={{
+          background: "radial-gradient(circle, currentColor 0%, transparent 70%)",
+          transitionDelay: "1.5s"
+        }}
+      />
+      
       <div
         className={cn(
-          "absolute right-5 bottom-1/3 w-64 h-20 opacity-0 transition-opacity duration-1000 font-mono text-left text-xs",
-          isVisible && "opacity-[0.3]"
+          "absolute right-1/4 bottom-1/4 w-64 h-64 rounded-full opacity-0 transition-opacity duration-3000",
+          isVisible && "opacity-[0.015] dark:opacity-[0.008]"
         )}
-        style={{ transitionDelay: "1s" }}
-      >
-        <pre className="text-primary dark:text-primary">
-          {`const connect = async () => {
-          try {
-            await api.portfolio.view();
-          } catch (e) {
-            console.error(e); // Changed log to error for better practice
-          }
-        }`}
-        </pre>
-      </div>
-
-      {/* Nouvelle ligne de code en haut à droite */}
-      <div
-        className={cn(
-          "absolute right-10 top-10 w-72 h-auto opacity-0 transition-opacity duration-1000 font-mono text-right text-sm",
-          isVisible && "opacity-[0.2]"
-        )}
-        style={{ transitionDelay: "1.2s" }}
-      >
-        <pre className="text-blue-400 dark:text-blue-500">
-          {`interface Project {
-  title: string;
-  tags: string[];
-  liveLink?: string;
-}`}
-        </pre>
-      </div>
-
-      {/* Nouvelle ligne de code en bas à gauche */}
-      <div
-        className={cn(
-          "absolute left-10 bottom-10 w-80 h-auto opacity-0 transition-opacity duration-1000 font-mono text-left text-base",
-          isVisible && "opacity-[0.25]"
-        )}
-        style={{ transitionDelay: "1.4s" }}
-      >
-        <pre className="text-purple-400 dark:text-purple-500">
-          {`// Function to animate elements
-const animateSection = (element) => {
-  gsap.to(element, { y: 0, opacity: 1, duration: 1 });
-};`}
-        </pre>
-      </div>
-
-      {/* Nouvelle ligne de code au centre */}
-      <div
-        className={cn(
-          "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-auto opacity-0 transition-opacity duration-1000 font-mono text-center text-sm",
-          isVisible && "opacity-[0.15]"
-        )}
-        style={{ transitionDelay: "1.6s" }}
-      >
-        <pre className="text-green-400 dark:text-green-500">
-          {`/* * This is a comment block for
- * extra fun in the background!
- */
-.container {
-  display: flex;
-  justify-content: center;
-}`}
-        </pre>
-      </div>
-
+        style={{
+          background: "radial-gradient(circle, currentColor 0%, transparent 70%)",
+          transitionDelay: "1.8s"
+        }}
+      />
     </div>
   );
 };

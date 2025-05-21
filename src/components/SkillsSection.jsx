@@ -150,6 +150,13 @@ const skills = [
     description: "Continuous deployment, serverless functions",
     color: "from-teal-500 to-teal-700"
   },
+  {
+    name: "Vercel",
+    level: 50,
+    category: "tools",
+    description: "Continuous deployment, serverless functions",
+    color: "from-teal-700 to-teal-500"
+  },
 ];
 
 // Groupes de catégories avec icônes et descriptions

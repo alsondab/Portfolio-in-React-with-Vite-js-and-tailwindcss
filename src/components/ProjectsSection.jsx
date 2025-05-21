@@ -1,3 +1,5 @@
+
+// ProjectsSection corrigé
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Play, Code, Clock } from 'lucide-react';
@@ -127,7 +129,7 @@ export const ProjectsSection = () => {
 
           <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
 
-          <p className="text-slate-700 dark:text-slate-500 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg">
             Voici quelques-uns de mes projets récents. Chaque projet a été soigneusement conçu avec une attention particulière aux détails, à la performance et à l'expérience utilisateur.
           </p>
         </motion.div>
@@ -136,10 +138,7 @@ export const ProjectsSection = () => {
           {projectsData.map((project, index) => (
             <motion.div
               key={index}
-              // Modifications ici pour un meilleur affichage en mode clair
-              // bg-white pour le mode clair, dark:bg-gray-800 pour le mode sombre
-              // Ajout de backdrop-blur-sm pour l'effet de flou sur les cartes
-              className="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700"
+              className="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden flex flex-col h-full shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700"
               variants={projectCardVariants}
               whileHover="hover"
             >
@@ -163,9 +162,6 @@ export const ProjectsSection = () => {
                   {project.tags.map(tag => (
                     <span
                       key={tag}
-                      // Modifications ici pour les tags en mode clair
-                      // bg-white/90 pour le mode clair (légèrement transparent)
-                      // text-blue-700 pour le mode clair
                       className="inline-block bg-white/90 dark:bg-gray-800/90 text-blue-700 dark:text-blue-400 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm backdrop-blur-sm"
                     >
                       {tag}
@@ -176,20 +172,18 @@ export const ProjectsSection = () => {
 
               {/* Project content */}
               <div className="p-6 flex flex-col flex-grow">
-                {/* Modifications ici pour le texte en mode clair */}
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
                   {project.title}
                 </h3>
 
-                {/* text-gray-700 pour le mode clair */}
-                <p className="text-gray-700 dark:text-gray-400 text-sm mb-6 flex-grow line-clamp-4">
+                <p className="text-gray-700 dark:text-gray-300 text-sm mb-6 flex-grow line-clamp-4">
                   {project.description}
                 </p>
 
                 {/* Action buttons */}
                 <div className="flex gap-3 mt-auto">
                   {project.status === "in-progress" ? (
-                    <div className="inline-flex items-center justify-center px-4 py-2 text-gray-600 dark:text-gray-400 rounded-md bg-gray-100 dark:bg-gray-700/50 flex-1">
+                    <div className="inline-flex items-center justify-center px-4 py-2 text-gray-700 dark:text-gray-300 rounded-md bg-gray-100 dark:bg-gray-700/50 flex-1">
                       <Clock className="mr-2 h-4 w-4" />
                       Bientôt disponible
                     </div>
@@ -219,11 +213,7 @@ export const ProjectsSection = () => {
                     href={project.repoLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    // Modifications ici pour le bouton "Code source" en mode clair
-                    // border-gray-300 pour le mode clair
-                    // text-gray-700 pour le mode clair
-                    // hover:bg-gray-50 pour le mode clair
-                    className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/70 transition-all duration-300 flex-1"
+                    className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/70 transition-all duration-300 flex-1"
                   >
                     <Code className="mr-2 h-4 w-4" />
                     Code source
