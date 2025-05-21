@@ -36,25 +36,25 @@ export const ProjectsSection = () => {
   // Animation variants
   const sectionVariants = {
     hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { 
-        staggerChildren: 0.2, 
-        duration: 0.5 
-      } 
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        duration: 0.5
+      }
     }
   };
 
   const projectCardVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
         type: 'spring',
         stiffness: 70,
         damping: 20
-      } 
+      }
     },
     hover: {
       y: -10,
@@ -68,8 +68,8 @@ export const ProjectsSection = () => {
 
   const tagVariants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       transition: {
         delay: 0.3
@@ -86,7 +86,7 @@ export const ProjectsSection = () => {
           En cours
         </div>
       );
-    } 
+    }
     else if (isVideo) {
       return (
         <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center shadow-lg">
@@ -99,8 +99,8 @@ export const ProjectsSection = () => {
   };
 
   return (
-    <motion.section 
-      id="projects" 
+    <motion.section
+      id="projects"
       className="py-20 md:py-32 bg-gradient-to-b from-secondary/10 to-background relative overflow-hidden"
       variants={sectionVariants}
       initial="hidden"
@@ -114,7 +114,7 @@ export const ProjectsSection = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,11 +124,11 @@ export const ProjectsSection = () => {
           <h2 className="text-3xl md:text-5xl font-bold mb-6 inline-block">
             Galerie de <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">Projets</span>
           </h2>
-          
+
           <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
-          
+
           <p className="text-slate-700 dark:text-slate-500 max-w-2xl mx-auto text-lg">
-            Voici quelques-uns de mes projets récents. Chaque projet a été soigneusement conçu avec une attention particulière aux détails, à la performance et à l'expérience utilisateur.    
+            Voici quelques-uns de mes projets récents. Chaque projet a été soigneusement conçu avec une attention particulière aux détails, à la performance et à l'expérience utilisateur.
           </p>
         </motion.div>
 
@@ -136,30 +136,36 @@ export const ProjectsSection = () => {
           {projectsData.map((project, index) => (
             <motion.div
               key={index}
-              className="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden flex flex-col h-full shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700"
+              // Modifications ici pour un meilleur affichage en mode clair
+              // bg-white pour le mode clair, dark:bg-gray-800 pour le mode sombre
+              // Ajout de backdrop-blur-sm pour l'effet de flou sur les cartes
+              className="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700"
               variants={projectCardVariants}
               whileHover="hover"
             >
               {/* Status badge */}
               {renderStatusBadge(project.status, project.isVideo)}
-              
+
               {/* Project image */}
               <div className="relative h-56 w-full overflow-hidden group">
-                <img  
-                  alt={project.title} 
+                <img
+                  alt={project.title}
                   className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110 filter group-hover:brightness-110"
-                  src={project.imageSrc} 
+                  src={project.imageSrc}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
-                
+
                 {/* Tags positioned over the image at bottom */}
-                <motion.div 
+                <motion.div
                   className="absolute bottom-3 left-3 flex flex-wrap gap-2"
                   variants={tagVariants}
                 >
                   {project.tags.map(tag => (
-                    <span 
-                      key={tag} 
+                    <span
+                      key={tag}
+                      // Modifications ici pour les tags en mode clair
+                      // bg-white/90 pour le mode clair (légèrement transparent)
+                      // text-blue-700 pour le mode clair
                       className="inline-block bg-white/90 dark:bg-gray-800/90 text-blue-700 dark:text-blue-400 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm backdrop-blur-sm"
                     >
                       {tag}
@@ -170,18 +176,20 @@ export const ProjectsSection = () => {
 
               {/* Project content */}
               <div className="p-6 flex flex-col flex-grow">
+                {/* Modifications ici pour le texte en mode clair */}
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
                   {project.title}
                 </h3>
-                
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow line-clamp-4">
+
+                {/* text-gray-700 pour le mode clair */}
+                <p className="text-gray-700 dark:text-gray-400 text-sm mb-6 flex-grow line-clamp-4">
                   {project.description}
                 </p>
 
                 {/* Action buttons */}
                 <div className="flex gap-3 mt-auto">
                   {project.status === "in-progress" ? (
-                    <div className="inline-flex items-center justify-center px-4 py-2 text-gray-500 dark:text-gray-400 rounded-md bg-gray-100 dark:bg-gray-700/50 flex-1">
+                    <div className="inline-flex items-center justify-center px-4 py-2 text-gray-600 dark:text-gray-400 rounded-md bg-gray-100 dark:bg-gray-700/50 flex-1">
                       <Clock className="mr-2 h-4 w-4" />
                       Bientôt disponible
                     </div>
@@ -211,6 +219,10 @@ export const ProjectsSection = () => {
                     href={project.repoLink}
                     target="_blank"
                     rel="noopener noreferrer"
+                    // Modifications ici pour le bouton "Code source" en mode clair
+                    // border-gray-300 pour le mode clair
+                    // text-gray-700 pour le mode clair
+                    // hover:bg-gray-50 pour le mode clair
                     className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/70 transition-all duration-300 flex-1"
                   >
                     <Code className="mr-2 h-4 w-4" />
@@ -223,7 +235,7 @@ export const ProjectsSection = () => {
         </div>
 
         {/* GitHub CTA */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

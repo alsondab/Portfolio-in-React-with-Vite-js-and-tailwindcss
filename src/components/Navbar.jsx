@@ -18,11 +18,11 @@ export const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
-      
-      // Détection de la section active
+
+      // Detect active section
       const sections = navItems.map(item => item.href.substring(1));
       const currentPosition = window.scrollY + 100;
-      
+
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= currentPosition) {
@@ -40,26 +40,25 @@ export const Navbar = () => {
     <nav
       className={cn(
         "fixed w-full z-40 transition-all duration-300",
-        isScrolled 
-          ? "py-3 bg-background/90 backdrop-blur-md border-b border-border shadow-sm" 
+        isScrolled
+          ? "py-3 bg-background/90 backdrop-blur-md border-b border-border shadow-sm"
           : "py-5"
       )}
     >
-      <div className="container flex items-center justify-between">
-        {/* Logo / Nom */}
+      <div className="container flex items-center justify-between ">
+        {/* Logo */}
         <a
-          className="text-xl font-bold flex items-center group focus-ring rounded-md"
           href="#hero"
+          className="flex items-center focus-ring rounded-md"
         >
-          <span className="relative z-10 text-glow text-primary transition-colors duration-300 group-hover:text-accent">
-            Dabo
-          </span>
-          <span className="ml-1 text-foreground transition-colors duration-300 group-hover:text-primary">
-            Ali
-          </span>
+          <img
+            src="/logo.ico"
+            alt="Logo"
+            className="h-20 w-auto object-contain transition-transform duration-300 hover:scale-105"
+          />
         </a>
 
-        {/* Navigation desktop */}
+        {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-6">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
@@ -69,8 +68,8 @@ export const Navbar = () => {
                 href={item.href}
                 className={cn(
                   "py-2 px-3 rounded-md transition-colors duration-300 font-medium relative focus-ring",
-                  isActive 
-                    ? "text-primary" 
+                  isActive
+                    ? "text-primary"
                     : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                 )}
               >
@@ -83,7 +82,7 @@ export const Navbar = () => {
           })}
         </div>
 
-        {/* Menu mobile */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className={cn(
@@ -91,13 +90,13 @@ export const Navbar = () => {
             "transition-colors duration-300 focus-ring",
             isMenuOpen ? "bg-primary/10 text-primary" : "hover:bg-primary/5"
           )}
-          aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Panneau mobile */}
+        {/* Mobile Navigation Panel */}
         <div
           className={cn(
             "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
@@ -117,7 +116,7 @@ export const Navbar = () => {
                   onClick={() => setIsMenuOpen(false)}
                   className={cn(
                     "py-3 px-5 rounded-lg font-medium text-center transition-colors duration-300",
-                    isActive 
+                    isActive
                       ? "bg-primary/10 text-primary"
                       : "text-foreground/80 hover:bg-primary/5 hover:text-primary"
                   )}

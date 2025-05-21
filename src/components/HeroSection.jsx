@@ -78,7 +78,7 @@ export const HeroSection = () => {
     <section
       id="hero"
       ref={heroRef}
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 py-24 overflow-hidden"
+      className="py-35 relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden"
     >
       <div className="absolute inset-0 z-0 ">
         <div
@@ -161,7 +161,7 @@ export const HeroSection = () => {
           </motion.p>
 
           <motion.div
-            className="pt-6 flex flex-col sm:flex-row items-center sm:justify-start justify-center gap-4"
+            className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4" 
             custom={3}
             initial="hidden"
             animate={isVisible ? "visible" : "hidden"}

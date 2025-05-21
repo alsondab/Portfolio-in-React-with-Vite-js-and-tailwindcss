@@ -6,146 +6,146 @@ import { Code, Server, Wrench, Monitor, ChevronRight, ArrowRight } from "lucide-
 // Données des compétences avec structure améliorée
 const skills = [
   // Frontend
-  { 
-    name: "HTML/CSS", 
-    level: 70, 
+  {
+    name: "HTML/CSS",
+    level: 70,
     category: "frontend",
     description: "Structure sémantique, responsive design, animations CSS",
     color: "from-blue-400 to-blue-600"
   },
-  { 
-    name: "JavaScript", 
-    level: 60, 
+  {
+    name: "JavaScript",
+    level: 60,
     category: "frontend",
     description: "DOM manipulation, ES6+, async/await",
-    color: "from-yellow-400 to-amber-500" 
+    color: "from-yellow-400 to-amber-500"
   },
-  { 
-    name: "React", 
-    level: 50, 
+  {
+    name: "React",
+    level: 50,
     category: "frontend",
     description: "Hooks, state management, component lifecycle",
     color: "from-cyan-400 to-sky-500"
   },
-  { 
-    name: "Angular", 
-    level: 60, 
+  {
+    name: "Angular",
+    level: 60,
     category: "frontend",
     description: "Components, services, routing, forms",
     color: "from-red-400 to-red-600"
   },
-  { 
-    name: "TypeScript", 
-    level: 40, 
+  {
+    name: "TypeScript",
+    level: 40,
     category: "frontend",
     description: "Types, interfaces, generics",
     color: "from-blue-500 to-blue-700"
   },
-  { 
-    name: "Tailwind CSS", 
-    level: 60, 
+  {
+    name: "Tailwind CSS",
+    level: 60,
     category: "frontend",
     description: "Utility classes, responsive design, dark mode",
     color: "from-teal-400 to-cyan-600"
   },
-  { 
-    name: "Next.js", 
-    level: 35, 
+  {
+    name: "Next.js",
+    level: 35,
     category: "frontend",
     description: "Server-side rendering, routing, API routes",
     color: "from-gray-700 to-gray-900"
   },
 
   // Backend
-  { 
-    name: "Node.js", 
-    level: 45, 
+  {
+    name: "Node.js",
+    level: 45,
     category: "backend",
     description: "APIs RESTful, middlewares, event handling",
     color: "from-green-500 to-green-700"
   },
-  { 
-    name: "MongoDB", 
-    level: 35, 
+  {
+    name: "MongoDB",
+    level: 35,
     category: "backend",
     description: "Schemas, CRUD operations, aggregation",
     color: "from-green-600 to-green-800"
   },
-  { 
-    name: "Express", 
-    level: 40, 
+  {
+    name: "Express",
+    level: 40,
     category: "backend",
     description: "Routing, middleware, request handling",
     color: "from-gray-500 to-gray-700"
   },
-  { 
-    name: "Django", 
-    level: 40, 
+  {
+    name: "Django",
+    level: 40,
     category: "backend",
     description: "MVT architecture, ORM, admin interface",
     color: "from-green-700 to-emerald-900"
   },
-  { 
-    name: "PostgreSQL", 
-    level: 30, 
+  {
+    name: "PostgreSQL",
+    level: 30,
     category: "backend",
     description: "Queries, relationships, indexes",
     color: "from-blue-700 to-indigo-800"
   },
-  { 
-    name: "MySQL", 
-    level: 60, 
+  {
+    name: "MySQL",
+    level: 60,
     category: "backend",
     description: "CRUD, JOINs, transactions, normalization",
     color: "from-orange-500 to-orange-700"
   },
 
   // Tools
-  { 
-    name: "Git/GitHub", 
-    level: 65, 
+  {
+    name: "Git/GitHub",
+    level: 65,
     category: "tools",
     description: "Version control, branching, PR workflow",
     color: "from-orange-600 to-orange-800"
   },
-  { 
-    name: "Loom", 
-    level: 65, 
+  {
+    name: "Loom",
+    level: 65,
     category: "tools",
     description: "Screen recording, video documentation",
     color: "from-purple-500 to-purple-700"
   },
-  { 
-    name: "Docker", 
-    level: 25, 
+  {
+    name: "Docker",
+    level: 25,
     category: "tools",
     description: "Containerization, Docker Compose",
     color: "from-blue-600 to-blue-800"
   },
-  { 
-    name: "Figma", 
-    level: 50, 
+  {
+    name: "Figma",
+    level: 50,
     category: "tools",
     description: "UI/UX design, prototyping, components",
     color: "from-purple-600 to-fuchsia-700"
   },
-  { 
-    name: "VS Code", 
-    level: 80, 
+  {
+    name: "VS Code",
+    level: 80,
     category: "tools",
     description: "Extensions, debugging, Git integration",
     color: "from-blue-500 to-blue-700"
   },
-  { 
-    name: "Postman", 
-    level: 50, 
+  {
+    name: "Postman",
+    level: 50,
     category: "tools",
     description: "API testing, request collections, automation",
     color: "from-orange-500 to-orange-700"
   },
-  { 
-    name: "Netlify", 
-    level: 50, 
+  {
+    name: "Netlify",
+    level: 50,
     category: "tools",
     description: "Continuous deployment, serverless functions",
     color: "from-teal-500 to-teal-700"
@@ -154,27 +154,27 @@ const skills = [
 
 // Groupes de catégories avec icônes et descriptions
 const categoryGroups = [
-  { 
-    id: "all", 
-    label: "Tout", 
+  {
+    id: "all",
+    label: "Tout",
     icon: <ChevronRight />,
     description: "Toutes mes compétences techniques"
   },
-  { 
-    id: "frontend", 
-    label: "Frontend", 
+  {
+    id: "frontend",
+    label: "Frontend",
     icon: <Monitor />,
     description: "Développement d'interfaces utilisateurs interactives et réactives"
   },
-  { 
-    id: "backend", 
-    label: "Backend", 
+  {
+    id: "backend",
+    label: "Backend",
     icon: <Server />,
     description: "APIs, bases de données et logique côté serveur"
   },
-  { 
-    id: "tools", 
-    label: "Outils", 
+  {
+    id: "tools",
+    label: "Outils",
     icon: <Wrench />,
     description: "Applications, plateformes et utilitaires de développement"
   },
@@ -231,7 +231,7 @@ export const SkillsSection = () => {
   };
 
   return (
-    <section id="skills" className="py-24 relative bg-gradient-to-b from-secondary/10 to-background">
+    <section id="skills" className="py-24 relative bg-gradient-to-b from-secondary/10 to-background dark:from-secondary/10 dark:to-background">
       {/* Éléments décoratifs en arrière-plan */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -left-64 top-1/4 w-96 h-96 rounded-full blur-3xl"></div>
@@ -241,13 +241,13 @@ export const SkillsSection = () => {
 
       <div className="container mx-auto max-w-6xl px-4 relative z-10">
         {/* En-tête de section avec titre et description */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800 dark:text-white">
             Compétences <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">Techniques</span>
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
@@ -258,7 +258,7 @@ export const SkillsSection = () => {
 
         {/* Navigation des catégories */}
         <div className="mb-12">
-          <motion.div 
+          <motion.div
             className="flex flex-wrap justify-center gap-3 mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -270,8 +270,8 @@ export const SkillsSection = () => {
                 onClick={() => setActiveCategory(category.id)}
                 className={`
                   px-5 py-3 rounded-xl transition-all duration-300 flex items-center gap-2
-                  ${activeCategory === category.id 
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/20 dark:shadow-purple-900/30 font-medium translate-y-0 hover:translate-y-0" 
+                  ${activeCategory === category.id
+                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/20 dark:shadow-purple-900/30 font-medium translate-y-0 hover:translate-y-0"
                     : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1"
                   }
                 `}
@@ -279,8 +279,8 @@ export const SkillsSection = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <span className={`
-                  ${activeCategory === category.id 
-                    ? "text-white" 
+                  ${activeCategory === category.id
+                    ? "text-white"
                     : "text-blue-500 dark:text-blue-400"
                   }
                 `}>
@@ -299,7 +299,7 @@ export const SkillsSection = () => {
               animate="animate"
               exit="exit"
               variants={activeCategory3D}
-              className="text-center max-w-2xl mx-auto mb-8 px-6 py-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-sm"
+              className="text-center max-w-2xl mx-auto mb-8 px-6 py-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-sm text-gray-700 dark:text-gray-200"
             >
               {categoryGroups.find(cat => cat.id === activeCategory)?.description}
             </motion.div>
@@ -307,7 +307,7 @@ export const SkillsSection = () => {
         </div>
 
         {/* Grille des compétences */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
@@ -328,8 +328,8 @@ export const SkillsSection = () => {
                   {skill.name}
                 </h3>
                 <span className={`
-                  font-mono text-sm px-3 py-1 rounded-full ${hoveredSkill === skill.name 
-                    ? "bg-gradient-to-r " + skill.color + " text-white" 
+                  font-mono text-sm px-3 py-1 rounded-full ${hoveredSkill === skill.name
+                    ? "bg-gradient-to-r " + skill.color + " text-white"
                     : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                   } transition-all duration-300
                 `}>
@@ -347,25 +347,15 @@ export const SkillsSection = () => {
                 Niveau: {getLevelText(skill.level)}
               </div>
 
-              {/* Barre de progression */}
-              <div className="relative h-2 bg-gray-100 dark:bg-gray-700">
-                <motion.div
-                  className={`h-full bg-gradient-to-r ${skill.color}`}
-                  initial={{ width: 0 }}
-                  animate={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                />
-              </div>
-
               {/* Indicateur visuel du niveau sous forme de grille */}
               <div className="flex pt-2 px-1 pb-1">
                 {[...Array(10)].map((_, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className={`
                       flex-1 h-1 mx-0.5 rounded-full transition-all duration-500
-                      ${index < skill.level / 10 
-                        ? `bg-gradient-to-r ${skill.color}` 
+                      ${index < skill.level / 10
+                        ? `bg-gradient-to-r ${skill.color}`
                         : "bg-gray-200 dark:bg-gray-700"
                       }
                       ${hoveredSkill === skill.name && index < skill.level / 10
@@ -381,14 +371,14 @@ export const SkillsSection = () => {
         </motion.div>
 
         {/* Appel à l'action */}
-        <motion.div 
+        <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
         >
-          <a 
-            href="#projects" 
+          <a
+            href="#projects"
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-full shadow-lg group transition-all duration-300 hover:shadow-xl"
           >
             <span>Voir mes projets</span>

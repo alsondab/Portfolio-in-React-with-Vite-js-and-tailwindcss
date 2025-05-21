@@ -8,13 +8,13 @@ import {
   Check,
   Loader2,
   AlertCircle,
-  Github, // Import the GitHub icon
-  ExternalLink // Import ExternalLink for visual cue
+  Github,
+  ExternalLink,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // Assure-toi que motion est bien importé et utilisé.
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -22,7 +22,7 @@ export const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
   const [errors, setErrors] = useState({});
   const [isVisible, setIsVisible] = useState(false);
@@ -78,20 +78,20 @@ export const ContactSection = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: undefined
+        [name]: undefined,
       }));
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => { // Rendu asynchrone pour utiliser await
     e.preventDefault();
 
     if (!validateForm()) return;
@@ -99,26 +99,56 @@ export const ContactSection = () => {
     setIsSubmitting(true);
     setFormStatus(null);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormStatus('success');
+    try {
+      // Appel réel à Formspree
+      const response = await fetch("https://formspree.io/f/xzzrwwww", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
+      if (response.ok) {
+        setFormStatus("success");
+        toast({
+          title: "Message envoyé !",
+          description:
+            "Merci pour votre message. Je vous réponds dans les plus brefs délais.",
+          variant: "success",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        setFormStatus("error");
+        // Tentative de récupérer un message d'erreur de Formspree
+        const errorData = await response.json();
+        toast({
+          title: "Erreur lors de l'envoi",
+          description:
+            errorData.error || "Un problème est survenu. Veuillez réessayer plus tard.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi du formulaire:", error);
+      setFormStatus("error");
       toast({
-        title: "Message envoyé !",
-        description: "Merci pour votre message. Je vous réponds dans les plus brefs délais.",
-        variant: "success",
+        title: "Erreur réseau",
+        description:
+          "Impossible de se connecter au serveur. Vérifiez votre connexion.",
+        variant: "destructive",
       });
-
-      setFormData({
-        name: "",
-        email: "",
-        message: ""
-      });
-
+    } finally {
+      setIsSubmitting(false);
+      // Réinitialise le statut après un court délai pour que l'icône de succès/erreur disparaisse
       setTimeout(() => {
         setFormStatus(null);
       }, 3000);
-    }, 1500);
+    }
   };
 
   const containerVariants = {
@@ -127,9 +157,9 @@ export const ContactSection = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -137,8 +167,8 @@ export const ContactSection = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
   };
 
   const contactInfo = [
@@ -147,35 +177,47 @@ export const ContactSection = () => {
       title: "Email",
       value: "contact@alidabo.site",
       href: "mailto:contact@alidabo.site",
-      type: "link", // Added type to distinguish
-      color: "from-primary/20 to-blue-400/20"
+      type: "link",
+      color: "from-primary/20 to-blue-400/20",
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
       title: "Téléphone",
       value: "+224 07-10-14-58-64",
       href: "tel:+2240710145864",
-      type: "link", // Added type
-      color: "from-blue-500/20 to-purple-400/20"
+      type: "link",
+      color: "from-blue-500/20 to-purple-400/20",
     },
     {
       icon: <MapPin className="h-6 w-6 text-primary" />,
       title: "Localisation",
       value: "Abidjan, Côte d'Ivoire",
       href: null,
-      type: "text", // Added type
-      color: "from-purple-500/20 to-pink-400/20"
+      type: "text",
+      color: "from-purple-500/20 to-pink-400/20",
     },
     {
-      icon: <Linkedin className="h-6 w-6 text-primary" />, // Main icon for the social card
+      icon: <Linkedin className="h-6 w-6 text-primary" />,
       title: "Réseaux sociaux",
-      type: "social", // New type for social media card
+      type: "social",
       links: [
-        { name: "LinkedIn", href: "https://www.linkedin.com/in/alsondab", icon: <Linkedin className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" /> },
-        { name: "GitHub", href: "https://github.com/alsondab", icon: <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" /> }
+        {
+          name: "LinkedIn",
+          href: "https://www.linkedin.com/in/alsondab",
+          icon: (
+            <Linkedin className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+          ),
+        },
+        {
+          name: "GitHub",
+          href: "https://github.com/alsondab",
+          icon: (
+            <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+          ),
+        },
       ],
-      color: "from-green-500/20 to-teal-400/20" // A new gradient for social card
-    }
+      color: "from-green-500/20 to-teal-400/20",
+    },
   ];
 
   return (
@@ -204,7 +246,9 @@ export const ContactSection = () => {
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 h-1 w-24 bg-gradient-to-r from-primary/40 to-primary rounded-full"></div>
           </h2>
           <p className="text-center text-muted-foreground mt-8 max-w-2xl mx-auto text-lg">
-            Avez-vous un projet en tête ou souhaitez-vous collaborer ? N'hésitez pas à me contacter. Je suis toujours ouvert à discuter de nouvelles opportunités.
+            Avez-vous un projet en tête ou souhaitez-vous collaborer ? N'hésitez
+            pas à me contacter. Je suis toujours ouvert à discuter de nouvelles
+            opportunités.
           </p>
         </motion.div>
 
@@ -222,32 +266,43 @@ export const ContactSection = () => {
 
             <div className="grid grid-cols-1 gap-6">
               {contactInfo.map((item, index) => (
-                <div
-                  key={index}
-                  className="group relative overflow-hidden"
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl`}></div>
+                <div key={index} className="group relative overflow-hidden">
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl`}
+                  ></div>
                   <div className="relative p-6 rounded-xl border border-border bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 group-hover:border-primary/20">
-                    <div className="flex items-start gap-4"> {/* Changed to items-start for consistent top alignment */}
+                    <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
                         {item.icon}
                       </div>
                       <div>
-                        <h4 className="font-medium text-lg mb-1">{item.title}</h4> {/* Added margin-bottom */}
-                        {item.type === 'link' && item.href ? (
+                        <h4 className="font-medium text-lg mb-1">
+                          {item.title}
+                        </h4>
+                        {item.type === "link" && item.href ? (
                           <a
                             href={item.href}
                             className="text-muted-foreground hover:text-primary transition-colors group-hover:text-foreground flex items-center gap-1"
-                            target={item.href.startsWith('http') ? "_blank" : undefined} // Open external links in new tab
-                            rel={item.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                            target={
+                              item.href.startsWith("http") ? "_blank" : undefined
+                            }
+                            rel={
+                              item.href.startsWith("http")
+                                ? "noopener noreferrer"
+                                : undefined
+                            }
                           >
                             {item.value}
-                            {item.href.startsWith('http') && <ExternalLink size={14} className="flex-shrink-0" />} {/* Add external link icon */}
+                            {item.href.startsWith("http") && (
+                              <ExternalLink size={14} className="flex-shrink-0" />
+                            )}
                           </a>
-                        ) : item.type === 'text' ? (
-                          <span className="text-muted-foreground group-hover:text-foreground">{item.value}</span>
-                        ) : item.type === 'social' && item.links ? (
-                          <div className="flex flex-wrap gap-3 mt-2"> {/* flex-wrap for smaller screens */}
+                        ) : item.type === "text" ? (
+                          <span className="text-muted-foreground group-hover:text-foreground">
+                            {item.value}
+                          </span>
+                        ) : item.type === "social" && item.links ? (
+                          <div className="flex flex-wrap gap-3 mt-2">
                             {item.links.map((socialLink, socialIndex) => (
                               <a
                                 key={socialIndex}
@@ -257,7 +312,9 @@ export const ContactSection = () => {
                                 className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors hover:scale-105 active:scale-95 duration-200"
                               >
                                 {socialLink.icon}
-                                <span className="text-sm">{socialLink.name}</span>
+                                <span className="text-sm">
+                                  {socialLink.name}
+                                </span>
                                 <ExternalLink size={14} className="flex-shrink-0" />
                               </a>
                             ))}
@@ -276,19 +333,20 @@ export const ContactSection = () => {
             <div className="relative p-8 rounded-xl bg-card/80 backdrop-blur-sm border border-border shadow-lg">
               <h3 className="text-2xl font-bold mb-6">Envoyez un message</h3>
 
-              <form className="space-y-6" onSubmit={handleSubmit}>
+              <form
+                method="POST" // La méthode doit être POST pour Formspree
+                className="space-y-6"
+                onSubmit={handleSubmit}
+              >
                 <div className="space-y-2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium"
-                  >
+                  <label htmlFor="name" className="block text-sm font-medium">
                     Comment vous appelez-vous ?
                   </label>
                   <div className="relative">
                     <input
                       type="text"
                       id="name"
-                      name="name"
+                      name="name" // Important pour Formspree
                       value={formData.name}
                       onChange={handleChange}
                       className={cn(
@@ -304,22 +362,21 @@ export const ContactSection = () => {
                     )}
                   </div>
                   {errors.name && (
-                    <p className="text-sm text-red-500 mt-1">{errors.name}</p>
+                    <p className="text-sm text-red-500 mt-1">
+                      {errors.name}
+                    </p>
                   )}
                 </div>
 
                 <div className="space-y-2">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium"
-                  >
+                  <label htmlFor="email" className="block text-sm font-medium">
                     Quel est votre email ?
                   </label>
                   <div className="relative">
                     <input
                       type="email"
                       id="email"
-                      name="email"
+                      name="email" // Important pour Formspree, Formspree gère aussi _replyto automatiquement
                       value={formData.email}
                       onChange={handleChange}
                       className={cn(
@@ -335,7 +392,9 @@ export const ContactSection = () => {
                     )}
                   </div>
                   {errors.email && (
-                    <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+                    <p className="text-sm text-red-500 mt-1">
+                      {errors.email}
+                    </p>
                   )}
                 </div>
 
@@ -349,7 +408,7 @@ export const ContactSection = () => {
                   <div className="relative">
                     <textarea
                       id="message"
-                      name="message"
+                      name="message" // Important pour Formspree
                       value={formData.message}
                       onChange={handleChange}
                       rows={5}
@@ -366,7 +425,9 @@ export const ContactSection = () => {
                     )}
                   </div>
                   {errors.message && (
-                    <p className="text-sm text-red-500 mt-1">{errors.message}</p>
+                    <p className="text-sm text-red-500 mt-1">
+                      {errors.message}
+                    </p>
                   )}
                 </div>
 
@@ -385,7 +446,7 @@ export const ContactSection = () => {
                       <Loader2 size={18} className="animate-spin" />
                       <span>Envoi en cours...</span>
                     </>
-                  ) : formStatus === 'success' ? (
+                  ) : formStatus === "success" ? (
                     <>
                       <Check size={18} />
                       <span>Message envoyé</span>
