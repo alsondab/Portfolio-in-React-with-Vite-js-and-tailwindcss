@@ -3,10 +3,55 @@ import { Phone, Mail, MapPin, Linkedin, Github, Download, Briefcase, Code, Star,
 
 export default function CVPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleDownload = (format) => {
+    const fileName = `CV_Ali_Dabo_2024.${format}`;
+    
+    // Vérifier si les fichiers existent avant de télécharger
+    const checkFileExists = async (url) => {
+      try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok;
+      } catch {
+        return false;
+      }
+    };
+    
+    if (format === 'pdf') {
+      const pdfPath = '/cv/CV_Ali_Dabo.pdf';
+      
+      checkFileExists(pdfPath).then(exists => {
+        if (exists) {
+          const link = document.createElement('a');
+          link.href = pdfPath;
+          link.download = fileName;
+          link.click();
+        } else {
+          alert('❌ Fichier PDF non trouvé!\n\nVeuillez:\n1. Créer le dossier public/cv/\n2. Y placer votre CV en PDF\n3. Le nommer "CV_Ali_Dabo.pdf"');
+        }
+      });
+    } else if (format === 'docx') {
+      const docxPath = '/cv/CV_Ali_Dabo.docx';
+      
+      checkFileExists(docxPath).then(exists => {
+        if (exists) {
+          const link = document.createElement('a');
+          link.href = docxPath;
+          link.download = fileName;
+          link.click();
+        } else {
+          alert('❌ Fichier Word non trouvé!\n\nVeuillez:\n1. Créer le dossier public/cv/\n2. Y placer votre CV en Word\n3. Le nommer "CV_Ali_Dabo.docx"');
+        }
+      });
+    }
+    
+    setShowDownloadModal(false);
+  };
 
   const skills = [
     { name: 'React & Vite', level: 90, color: 'bg-blue-500' },
@@ -38,9 +83,78 @@ export default function CVPage() {
   return (
     <div className={`max-w-6xl mx-auto bg-gradient-to-br from-slate-100 to-blue-50 p-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
       
+      {/* Download Modal */}
+      {showDownloadModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full transform transition-all duration-300 scale-100">
+            <div className="p-6">
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4">
+                  <Download className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Télécharger le CV</h3>
+                <p className="text-gray-600">Choisissez votre format préféré</p>
+              </div>
+              
+              <div className="space-y-3 mb-6">
+                <button
+                  onClick={() => handleDownload('pdf')}
+                  className="w-full flex items-center justify-between p-4 border-2 border-red-200 rounded-xl hover:border-red-400 hover:bg-red-50 transition-all duration-200 group"
+                >
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-red-200 transition-colors">
+                      <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd"/>
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <p className="font-semibold text-gray-800">PDF</p>
+                      <p className="text-sm text-gray-600">Format universel, idéal pour l'impression</p>
+                    </div>
+                  </div>
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+                  </svg>
+                </button>
+                
+                <button
+                  onClick={() => handleDownload('docx')}
+                  className="w-full flex items-center justify-between p-4 border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 group"
+                >
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
+                      <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm6 2a1 1 0 11-2 0 1 1 0 012 0zM7 8a1 1 0 000 2h6a1 1 0 100-2H7zm0 4a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd"/>
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <p className="font-semibold text-gray-800">Word (DOCX)</p>
+                      <p className="text-sm text-gray-600">Format éditable, personnalisable</p>
+                    </div>
+                  </div>
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+              
+              <button
+                onClick={() => setShowDownloadModal(false)}
+                className="w-full py-3 px-4 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors duration-200 font-medium"
+              >
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Floating Action Button */}
-      <div className="fixed bottom-8 right-8 z-50">
-        <button className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300">
+      <div className="fixed bottom-8 right-8 z-40">
+        <button 
+          onClick={() => setShowDownloadModal(true)}
+          className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300"
+        >
           <Download className="w-6 h-6 group-hover:animate-pulse" />
           <span className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
             Télécharger CV
