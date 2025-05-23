@@ -173,9 +173,9 @@ export default function CVPage() {
           <div className="flex items-center mb-6 md:mb-0">
             <div className="relative">
               <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl mr-8 transform hover:scale-105 transition-transform duration-300">
-                <img src="/api/placeholder/128/128" alt="Ali Dabo" className="w-full h-full object-cover" />
+                <img src="/public/portfolioProfil.png" alt="Ali Dabo" className="w-full h-full object-cover" />
               </div>
-              <div className="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-4 border-white flex items-center justify-center">
+              <div className="absolute -bottom-5 -right-2 bg-green-500 w-8 h-8 rounded-full border-4 border-white flex items-center justify-center">
                 <CheckCircle className="w-4 h-4 text-white" />
               </div>
             </div>
