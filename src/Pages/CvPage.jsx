@@ -1,57 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Linkedin, Github, Download, Briefcase, Code, Star, Award, Globe, BookOpen, Zap, Users, Target, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Linkedin, Github, Briefcase, Code, Star, Award, Globe, BookOpen, Zap, Users, Target, CheckCircle, Calendar, GraduationCap, Search } from 'lucide-react';
 
 export default function CVPage() {
   const [isVisible, setIsVisible] = useState(false);
-  const [showDownloadModal, setShowDownloadModal] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  const handleDownload = (format) => {
-    const fileName = `CV_Ali_Dabo_2024.${format}`;
-    
-    // Vérifier si les fichiers existent avant de télécharger
-    const checkFileExists = async (url) => {
-      try {
-        const response = await fetch(url, { method: 'HEAD' });
-        return response.ok;
-      } catch {
-        return false;
-      }
-    };
-    
-    if (format === 'pdf') {
-      const pdfPath = '/cv/CV_Ali_Dabo.pdf';
-      
-      checkFileExists(pdfPath).then(exists => {
-        if (exists) {
-          const link = document.createElement('a');
-          link.href = pdfPath;
-          link.download = fileName;
-          link.click();
-        } else {
-          alert('❌ Fichier PDF non trouvé!\n\nVeuillez:\n1. Créer le dossier public/cv/\n2. Y placer votre CV en PDF\n3. Le nommer "CV_Ali_Dabo.pdf"');
-        }
-      });
-    } else if (format === 'docx') {
-      const docxPath = '/cv/CV_Ali_Dabo.docx';
-      
-      checkFileExists(docxPath).then(exists => {
-        if (exists) {
-          const link = document.createElement('a');
-          link.href = docxPath;
-          link.download = fileName;
-          link.click();
-        } else {
-          alert('❌ Fichier Word non trouvé!\n\nVeuillez:\n1. Créer le dossier public/cv/\n2. Y placer votre CV en Word\n3. Le nommer "CV_Ali_Dabo.docx"');
-        }
-      });
-    }
-    
-    setShowDownloadModal(false);
-  };
 
   const skills = [
     { name: 'React & Vite', level: 90, color: 'bg-blue-500' },
@@ -66,102 +21,43 @@ export default function CVPage() {
     { 
       title: 'Portfolio Interactif', 
       tech: 'React, TailwindCSS', 
-      description: 'Site web personnel avec animations et design responsive' 
+      description: 'Site web personnel avec animations et design responsive',
+      status: 'Complété'
     },
     { 
       title: 'API REST E-commerce', 
       tech: 'Node.js, Express, MySQL', 
-      description: 'Backend complet pour application de commerce électronique' 
+      description: 'Backend complet pour application de commerce électronique',
+      status: 'En cours' 
     },
     { 
       title: 'Dashboard Analytics', 
       tech: 'React, Chart.js, Django', 
-      description: 'Interface de visualisation de données en temps réel' 
+      description: 'Interface de visualisation de données en temps réel',
+      status: 'Projet académique'
+    }
+  ];
+
+  const experiences = [
+    {
+      title: 'Développeur Web Junior (Stage)',
+      company: 'Recherche active de stage',
+      period: '2025 - À définir',
+      description: 'Recherche d\'opportunité de stage pour appliquer mes compétences en développement web et contribuer à des projets concrets.',
+      type: 'stage'
+    },
+    {
+      title: 'Projets Freelance',
+      company: 'Travail indépendant',
+      period: '2023 - Présent',
+      description: 'Développement de sites web pour petites entreprises locales, maintenance et optimisation de sites existants.',
+      type: 'freelance'
     }
   ];
 
   return (
     <div className={`max-w-6xl mx-auto bg-gradient-to-br from-slate-100 to-blue-50 p-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
       
-      {/* Download Modal */}
-      {showDownloadModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full transform transition-all duration-300 scale-100">
-            <div className="p-6">
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4">
-                  <Download className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Télécharger le CV</h3>
-                <p className="text-gray-600">Choisissez votre format préféré</p>
-              </div>
-              
-              <div className="space-y-3 mb-6">
-                <button
-                  onClick={() => handleDownload('pdf')}
-                  className="w-full flex items-center justify-between p-4 border-2 border-red-200 rounded-xl hover:border-red-400 hover:bg-red-50 transition-all duration-200 group"
-                >
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-red-200 transition-colors">
-                      <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd"/>
-                      </svg>
-                    </div>
-                    <div className="text-left">
-                      <p className="font-semibold text-gray-800">PDF</p>
-                      <p className="text-sm text-gray-600">Format universel, idéal pour l'impression</p>
-                    </div>
-                  </div>
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
-                  </svg>
-                </button>
-                
-                <button
-                  onClick={() => handleDownload('docx')}
-                  className="w-full flex items-center justify-between p-4 border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 group"
-                >
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
-                      <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm6 2a1 1 0 11-2 0 1 1 0 012 0zM7 8a1 1 0 000 2h6a1 1 0 100-2H7zm0 4a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd"/>
-                      </svg>
-                    </div>
-                    <div className="text-left">
-                      <p className="font-semibold text-gray-800">Word (DOCX)</p>
-                      <p className="text-sm text-gray-600">Format éditable, personnalisable</p>
-                    </div>
-                  </div>
-                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
-                  </svg>
-                </button>
-              </div>
-              
-              <button
-                onClick={() => setShowDownloadModal(false)}
-                className="w-full py-3 px-4 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors duration-200 font-medium"
-              >
-                Annuler
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Floating Action Button */}
-      <div className="fixed bottom-8 right-8 z-40">
-        <button 
-          onClick={() => setShowDownloadModal(true)}
-          className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300"
-        >
-          <Download className="w-6 h-6 group-hover:animate-pulse" />
-          <span className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-            Télécharger CV
-          </span>
-        </button>
-      </div>
-
       {/* Enhanced Header */}
       <div className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 p-8 mb-8 overflow-hidden">
         {/* Background Pattern */}
@@ -172,26 +68,30 @@ export default function CVPage() {
         <div className="relative flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center mb-6 md:mb-0">
             <div className="relative">
-              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl mr-8 transform hover:scale-105 transition-transform duration-300">
-                <img src="/public/portfolioProfil.png" alt="Ali Dabo" className="w-full h-full object-cover" />
+              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl mr-8 transform hover:scale-105 transition-transform duration-300 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                <span className="text-4xl font-bold text-white">AD</span>
               </div>
-              <div className="absolute -bottom-5 -right-2 bg-green-500 w-8 h-8 rounded-full border-4 border-white flex items-center justify-center">
-                <CheckCircle className="w-4 h-4 text-white" />
+              <div className="absolute -bottom-2 -right-2 bg-orange-500 w-10 h-10 rounded-full border-4 border-white flex items-center justify-center">
+                <Search className="w-5 h-5 text-white" />
               </div>
             </div>
             <div className="text-white">
               <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
                 ALI DABO
               </h1>
-              <p className="text-xl text-blue-200 mb-3">Développeur Web Full-Stack</p>
+              <p className="text-xl text-blue-200 mb-3">Étudiant Développeur Web Full-Stack</p>
               <div className="flex items-center space-x-4">
                 <div className="flex items-center text-blue-200">
                   <MapPin className="w-4 h-4 mr-1" />
                   <span className="text-sm">Abidjan, CI</span>
                 </div>
+                <div className="flex items-center text-orange-300">
+                  <Search className="w-4 h-4 mr-1" />
+                  <span className="text-sm">Recherche Stage</span>
+                </div>
                 <div className="flex items-center text-green-300">
-                  <Zap className="w-4 h-4 mr-1" />
-                  <span className="text-sm">Disponible</span>
+                  <GraduationCap className="w-4 h-4 mr-1" />
+                  <span className="text-sm">Licence 3</span>
                 </div>
               </div>
             </div>
@@ -218,12 +118,41 @@ export default function CVPage() {
             <Target className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Profil Professionnel</h2>
-          <p className="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto">
-            <span className="font-semibold text-blue-600">Développeur Full-Stack passionné</span> et récemment diplômé en Informatique de Génie Logiciel. 
-            Fort d'une expertise en <span className="font-medium text-purple-600">React, Node.js et technologies modernes</span>, 
-            je combine créativité technique et approche solution-oriented pour transformer vos idées en applications web performantes. 
-            Ma capacité d'adaptation et mon goût pour l'innovation me permettent d'apporter une réelle valeur ajoutée à vos projets digitaux.
+           <p className="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto">
+            <span className="font-semibold text-blue-600">Futur diplômé en Informatique de Génie Logiciel</span> (obtention de la Licence prévue en 2024),
+            je suis un <span className="font-semibold text-blue-600">développeur Full-Stack passionné</span> et proactif, actuellement en recherche de stages.
+            Fort d'une solide maîtrise en <span className="font-medium text-purple-600">React, Node.js et technologies modernes</span> acquise tout au long de mon cursus,
+            je combine créativité technique et approche solution-oriented pour transformer vos idées en applications web performantes.
+            Ma capacité d'adaptation, mon goût pour l'innovation et mon désir d'apprendre rapidement me permettent d'apporter une réelle valeur ajoutée à vos projets digitaux,
+            particulièrement dans le cadre d'une première expérience professionnelle significative.
           </p>
+        </div>
+      </div>
+
+      {/* Objectifs de Stage */}
+      <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl shadow-xl p-8 mb-8 border border-orange-200">
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full mb-6">
+            <Search className="w-8 h-8 text-white" />
+          </div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Objectifs de Stage</h2>
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <Code className="w-8 h-8 text-blue-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-gray-800 mb-2">Développement Technique</h3>
+              <p className="text-gray-600 text-sm">Approfondir mes compétences en développement web dans un environnement professionnel</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <Users className="w-8 h-8 text-green-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-gray-800 mb-2">Travail en Équipe</h3>
+              <p className="text-gray-600 text-sm">Collaborer avec des développeurs expérimentés et apprendre les bonnes pratiques</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <Target className="w-8 h-8 text-purple-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-gray-800 mb-2">Projet Concret</h3>
+              <p className="text-gray-600 text-sm">Contribuer à des projets réels et avoir un impact mesurable sur les résultats</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -274,10 +203,37 @@ export default function CVPage() {
             </div>
           </div>
 
+          {/* Disponibilités */}
+          <div className="bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl shadow-xl p-6 text-white">
+            <div className="flex items-center mb-6">
+              <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mr-4">
+                <Calendar className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-xl font-bold">Disponibilités</h2>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <h3 className="font-semibold mb-2">Période de Stage</h3>
+                <p className="text-sm text-green-100">Flexible selon les besoins de l'entreprise</p>
+                <p className="text-sm text-green-100">Minimum 2 mois, idéalement 3-6 mois</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <h3 className="font-semibold mb-2">Modalités</h3>
+                <p className="text-sm text-green-100">Temps plein ou temps partiel</p>
+                <p className="text-sm text-green-100">Présentiel, distanciel ou hybride</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <h3 className="font-semibold mb-2">Début Souhaité</h3>
+                <p className="text-sm text-green-100">Dès que possible</p>
+              </div>
+            </div>
+          </div>
+
           {/* Enhanced Languages */}
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 border border-white/20">
             <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center mr-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
                 <Globe className="w-6 h-6 text-white" />
               </div>
               <h2 className="text-xl font-bold text-gray-800">Langues</h2>
@@ -333,11 +289,43 @@ export default function CVPage() {
         {/* Right Column - Enhanced */}
         <div className="lg:col-span-2 space-y-8">
           
+          {/* Experience Section */}
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
+            <div className="flex items-center mb-8">
+              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4">
+                <Briefcase className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800">Expérience & Recherche</h2>
+            </div>
+            
+            <div className="space-y-6">
+              {experiences.map((exp, index) => (
+                <div key={index} className="border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800">{exp.title}</h3>
+                      <p className="text-blue-600 font-medium">{exp.company}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-sm text-gray-500">{exp.period}</span>
+                      <div className={`inline-block px-3 py-1 rounded-full text-xs mt-1 ${
+                        exp.type === 'stage' ? 'bg-orange-100 text-orange-800' : 'bg-blue-100 text-blue-800'
+                      }`}>
+                        {exp.type === 'stage' ? 'Recherche' : 'Expérience'}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">{exp.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Projects Section */}
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
             <div className="flex items-center mb-8">
               <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mr-4">
-                <Briefcase className="w-6 h-6 text-white" />
+                <Code className="w-6 h-6 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-gray-800">Projets Récents</h2>
             </div>
@@ -349,9 +337,14 @@ export default function CVPage() {
                     <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
                       {project.title}
                     </h3>
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
-                      {project.tech}
-                    </span>
+                    <div className="flex space-x-2">
+                      <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                        {project.tech}
+                      </span>
+                      <span className="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">
+                        {project.status}
+                      </span>
+                    </div>
                   </div>
                   <p className="text-gray-600 leading-relaxed">{project.description}</p>
                 </div>
@@ -373,16 +366,17 @@ export default function CVPage() {
                 {
                   degree: 'Licence en Informatique de Génie Logiciel',
                   school: 'Université de Technologie d\'Abidjan',
-                  year: '2024',
-                  status: 'Diplômé avec mention',
-                  color: 'from-green-500 to-emerald-500'
+                  year: '2022-2025',
+                  status: 'En cours - Licence 3',
+                  color: 'from-blue-500 to-cyan-500',
+                  current: true
                 },
                 {
                   degree: 'BSc. Business Management System',
                   school: 'Wisconsin University College, Accra, Ghana',
                   year: '2020-2022',
-                  status: 'Parcours international',
-                  color: 'from-blue-500 to-cyan-500'
+                  status: 'Diplômé',
+                  color: 'from-green-500 to-emerald-500'
                 },
                 {
                   degree: 'Baccalauréat Série A1',
@@ -396,12 +390,19 @@ export default function CVPage() {
                   <div className="flex">
                     <div className={`w-1 bg-gradient-to-b ${education.color} rounded-full mr-6`}></div>
                     <div className="flex-1 pb-6">
-                      <div className="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">{education.degree}</h3>
+                      <div className={`${education.current ? 'bg-blue-50 border-2 border-blue-200' : 'bg-gray-50'} rounded-xl p-6 hover:shadow-md transition-shadow`}>
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="text-lg font-semibold text-gray-800">{education.degree}</h3>
+                          {education.current && (
+                            <span className="px-3 py-1 bg-blue-500 text-white text-xs rounded-full animate-pulse">
+                              En cours
+                            </span>
+                          )}
+                        </div>
                         <p className="text-blue-600 font-medium mb-1">{education.school}</p>
                         <div className="flex items-center justify-between">
                           <span className="text-gray-600">{education.year}</span>
-                          <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                          <span className={`px-3 py-1 ${education.current ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'} text-xs rounded-full`}>
                             {education.status}
                           </span>
                         </div>
@@ -477,9 +478,11 @@ export default function CVPage() {
                 <Users className="w-8 h-8 text-white" />
               </div>
               
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Références Professionnelles</h2>
-              <p className="text-gray-600 mb-8 text-lg">Recommandations et témoignages disponibles sur demande</p>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">Références & Portfolio</h2>
+              <p className="text-gray-600 mb-8 text-lg">Projets et recommandations disponibles en ligne</p>
               
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+    
               <button 
                 onClick={() => window.open("https://www.linkedin.com/in/alsondab", "_blank")}
                 className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-2 transition-all duration-300 overflow-hidden"
@@ -497,6 +500,7 @@ export default function CVPage() {
               <div className="mt-8 flex items-center justify-center gap-2 text-sm text-gray-500">
                 <CheckCircle className="w-4 h-4 text-green-500" />
                 <span>Profil vérifié • Références disponibles</span>
+              </div>
               </div>
             </div>
           </div>
