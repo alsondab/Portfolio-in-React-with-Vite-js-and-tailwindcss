@@ -9,30 +9,29 @@ export default function CVPage() {
   }, []);
 
   const skills = [
-    { name: 'React & Vite', level: 90, color: 'bg-blue-500' },
-    { name: 'JavaScript', level: 85, color: 'bg-yellow-500' },
-    { name: 'Node.js', level: 80, color: 'bg-green-500' },
-    { name: 'TailwindCSS', level: 88, color: 'bg-cyan-500' },
-    { name: 'MySQL', level: 75, color: 'bg-orange-500' },
-    { name: 'Git/GitHub', level: 82, color: 'bg-purple-500' }
+    { name: 'React & Vite', level: 65, color: 'bg-blue-500' },
+    { name: 'JavaScript', level: 60, color: 'bg-yellow-500' },
+    { name: 'TailwindCSS', level: 60, color: 'bg-cyan-500' },
+    { name: 'MySQL', level: 60, color: 'bg-orange-500' },
+    { name: 'Git/GitHub', level: 70, color: 'bg-purple-500' }
   ];
 
   const projects = [
-    { 
-      title: 'Portfolio Interactif', 
-      tech: 'React, TailwindCSS', 
+    {
+      title: 'Portfolio Interactif',
+      tech: 'React, TailwindCSS',
       description: 'Site web personnel avec animations et design responsive',
       status: 'Complété'
     },
-    { 
-      title: 'API REST E-commerce', 
-      tech: 'Node.js, Express, MySQL', 
+    {
+      title: 'API REST E-commerce',
+      tech: 'Node.js, Express, MySQL',
       description: 'Backend complet pour application de commerce électronique',
-      status: 'En cours' 
+      status: 'En cours'
     },
-    { 
-      title: 'Dashboard Analytics', 
-      tech: 'React, Chart.js, Django', 
+    {
+      title: 'Dashboard Analytics',
+      tech: 'React, Chart.js, Django',
       description: 'Interface de visualisation de données en temps réel',
       status: 'Projet académique'
     }
@@ -57,22 +56,22 @@ export default function CVPage() {
 
   return (
     <div className={`max-w-6xl mx-auto bg-gradient-to-br from-slate-100 to-blue-50 p-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-      
+
       {/* Enhanced Header */}
       <div className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 p-8 mb-8 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent transform -skew-y-12"></div>
         </div>
-        
+
         <div className="relative flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center mb-6 md:mb-0">
             <div className="relative">
               <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl mr-8 transform hover:scale-105 transition-transform duration-300 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
                 <span className="text-4xl font-bold text-white">AD</span>
               </div>
-              <div className="absolute -bottom-2 -right-2 bg-orange-500 w-10 h-10 rounded-full border-4 border-white flex items-center justify-center">
-                <Search className="w-5 h-5 text-white" />
+              <div className="absolute -bottom-3 -right-1 bg-orange-500 w-7 h-7 rounded-full border-4 border-white flex items-center justify-center">
+                <Search className="w-3 h-3 text-white" />
               </div>
             </div>
             <div className="text-white">
@@ -118,7 +117,7 @@ export default function CVPage() {
             <Target className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Profil Professionnel</h2>
-           <p className="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto">
+          <p className="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto">
             <span className="font-semibold text-blue-600">Futur diplômé en Informatique de Génie Logiciel</span> (obtention de la Licence prévue en 2024),
             je suis un <span className="font-semibold text-blue-600">développeur Full-Stack passionné</span> et proactif, actuellement en recherche de stages.
             Fort d'une solide maîtrise en <span className="font-medium text-purple-600">React, Node.js et technologies modernes</span> acquise tout au long de mon cursus,
@@ -153,13 +152,24 @@ export default function CVPage() {
               <p className="text-gray-600 text-sm">Contribuer à des projets réels et avoir un impact mesurable sur les résultats</p>
             </div>
           </div>
+          <div className="mt-8 bg-blue-50 rounded-xl p-6 shadow-inner border border-blue-200">
+            <h3 className="font-bold text-blue-700 mb-3 flex items-center justify-center">
+              <Zap className="w-6 h-6 mr-2 text-blue-600" />
+              Mon Ambition
+            </h3>
+            <p className="text-gray-700 text-base leading-relaxed">
+              Mon objectif principal est de **développer une expertise technique solide** et d'acquérir une expérience professionnelle concrète en développement web.
+              Je souhaite trouver un environnement stimulant où je pourrai transformer mes compétences en contributions significatives,
+              afin d'assurer une trajectoire de carrière réussie, me permettant d'être **autonome financièrement** et de **fonder une famille épanouie**.
+            </p>
+          </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column - Enhanced */}
         <div className="lg:col-span-1 space-y-8">
-          
+
           {/* Enhanced Skills */}
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 border border-white/20 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center mb-6">
@@ -168,7 +178,7 @@ export default function CVPage() {
               </div>
               <h2 className="text-xl font-bold text-gray-800">Compétences Techniques</h2>
             </div>
-            
+
             <div className="space-y-4">
               {skills.map((skill, index) => (
                 <div key={index} className="group">
@@ -179,7 +189,7 @@ export default function CVPage() {
                     <span className="text-sm text-gray-500">{skill.level}%</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                    <div 
+                    <div
                       className={`h-full ${skill.color} rounded-full transition-all duration-1000 ease-out transform origin-left hover:scale-x-105`}
                       style={{ width: `${skill.level}%` }}
                     ></div>
@@ -194,7 +204,7 @@ export default function CVPage() {
                 Technologies Additionnelles
               </h3>
               <div className="flex flex-wrap gap-2">
-                {['HTML5', 'CSS3', 'Bootstrap', 'Angular', 'Express', 'Django', 'MySQL', 'Git', 'Netlify', 'Vercel'].map((tech, index) => (
+                {['HTML5', 'CSS3', 'Bootstrap', 'Angular', 'Node.js', 'Express', 'Django', 'MySQL', 'Git', 'Netlify', 'Vercel'].map((tech, index) => (
                   <span key={index} className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-xs rounded-full hover:from-blue-200 hover:to-purple-200 transition-all cursor-pointer transform hover:scale-105">
                     {tech}
                   </span>
@@ -211,7 +221,7 @@ export default function CVPage() {
               </div>
               <h2 className="text-xl font-bold">Disponibilités</h2>
             </div>
-            
+
             <div className="space-y-4">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
                 <h3 className="font-semibold mb-2">Période de Stage</h3>
@@ -238,12 +248,12 @@ export default function CVPage() {
               </div>
               <h2 className="text-xl font-bold text-gray-800">Langues</h2>
             </div>
-            
+
             <div className="space-y-4">
               {[
-                { lang: 'Français', level: 'Natif', stars: 5 },
-                { lang: 'Anglais', level: 'Courant', stars: 4 },
-                { lang: 'Arabe', level: 'Notions', stars: 2 }
+                { lang: 'Français', level: 'Natif', stars: 4 },
+                { lang: 'Anglais', level: 'Courant', stars: 3 },
+                { lang: 'Arabe', level: 'Notions', stars: 1 }
               ].map((language, index) => (
                 <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors">
                   <div>
@@ -268,7 +278,7 @@ export default function CVPage() {
               </div>
               <h2 className="text-xl font-bold">Contact & Réseaux</h2>
             </div>
-            
+
             <div className="space-y-4">
               {[
                 { icon: Mail, text: 'contact@alidabo.site', href: 'mailto:contact@alidabo.site' },
@@ -276,8 +286,8 @@ export default function CVPage() {
                 { icon: Linkedin, text: 'linkedin.com/in/alsondab', href: 'https://www.linkedin.com/in/alsondab' },
                 { icon: Github, text: 'github.com/alsondab', href: 'https://github.com/alsondab' }
               ].map((contact, index) => (
-                <a key={index} href={contact.href} target="_blank" rel="noopener noreferrer" 
-                   className="group flex items-center p-3 rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <a key={index} href={contact.href} target="_blank" rel="noopener noreferrer"
+                  className="group flex items-center p-3 rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
                   <contact.icon className="w-5 h-5 mr-3 group-hover:animate-pulse" />
                   <span className="text-sm">{contact.text}</span>
                 </a>
@@ -288,7 +298,7 @@ export default function CVPage() {
 
         {/* Right Column - Enhanced */}
         <div className="lg:col-span-2 space-y-8">
-          
+
           {/* Experience Section */}
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
             <div className="flex items-center mb-8">
@@ -297,7 +307,7 @@ export default function CVPage() {
               </div>
               <h2 className="text-2xl font-bold text-gray-800">Expérience & Recherche</h2>
             </div>
-            
+
             <div className="space-y-6">
               {experiences.map((exp, index) => (
                 <div key={index} className="border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
@@ -310,7 +320,7 @@ export default function CVPage() {
                       <span className="text-sm text-gray-500">{exp.period}</span>
                       <div className={`inline-block px-3 py-1 rounded-full text-xs mt-1 ${
                         exp.type === 'stage' ? 'bg-orange-100 text-orange-800' : 'bg-blue-100 text-blue-800'
-                      }`}>
+                        }`}>
                         {exp.type === 'stage' ? 'Recherche' : 'Expérience'}
                       </div>
                     </div>
@@ -329,7 +339,7 @@ export default function CVPage() {
               </div>
               <h2 className="text-2xl font-bold text-gray-800">Projets Récents</h2>
             </div>
-            
+
             <div className="grid gap-6">
               {projects.map((project, index) => (
                 <div key={index} className="group border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-1">
@@ -360,14 +370,14 @@ export default function CVPage() {
               </div>
               <h2 className="text-2xl font-bold text-gray-800">Formation Académique</h2>
             </div>
-            
+
             <div className="space-y-6">
               {[
                 {
                   degree: 'Licence en Informatique de Génie Logiciel',
                   school: 'Université de Technologie d\'Abidjan',
                   year: '2022-2025',
-                  status: 'En cours - Licence 3',
+                  status: 'En cours',
                   color: 'from-blue-500 to-cyan-500',
                   current: true
                 },
@@ -382,7 +392,7 @@ export default function CVPage() {
                   degree: 'Baccalauréat Série A1',
                   school: 'Lycée Ahmed Khadim OYABI, Gabon',
                   year: '2019',
-                  status: 'Mention Bien',
+                  status: 'Obtenu',
                   color: 'from-purple-500 to-pink-500'
                 }
               ].map((education, index) => (
@@ -402,9 +412,6 @@ export default function CVPage() {
                         <p className="text-blue-600 font-medium mb-1">{education.school}</p>
                         <div className="flex items-center justify-between">
                           <span className="text-gray-600">{education.year}</span>
-                          <span className={`px-3 py-1 ${education.current ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'} text-xs rounded-full`}>
-                            {education.status}
-                          </span>
                         </div>
                       </div>
                     </div>
@@ -422,7 +429,7 @@ export default function CVPage() {
               </div>
               <h2 className="text-2xl font-bold text-gray-800">Certifications & Formations</h2>
             </div>
-            
+
             <div className="grid gap-6">
               {[
                 {
@@ -477,30 +484,25 @@ export default function CVPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6">
                 <Users className="w-8 h-8 text-white" />
               </div>
-              
+
               <h2 className="text-2xl font-bold text-gray-800 mb-4">Références & Portfolio</h2>
               <p className="text-gray-600 mb-8 text-lg">Projets et recommandations disponibles en ligne</p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-    
-              <button 
-                onClick={() => window.open("https://www.linkedin.com/in/alsondab", "_blank")}
-                className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-2 transition-all duration-300 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 group-hover:translate-x-full transition-all duration-700"></div>
-                
-                <Linkedin className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <span>Consulter mon LinkedIn</span>
-                
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                </svg>
-              </button>
-              
-              <div className="mt-8 flex items-center justify-center gap-2 text-sm text-gray-500">
-                <CheckCircle className="w-4 h-4 text-green-500" />
-                <span>Profil vérifié • Références disponibles</span>
-              </div>
+
+                <button
+                  onClick={() => window.open("https://www.linkedin.com/in/alsondab", "_blank")}
+                  className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 group-hover:translate-x-full transition-all duration-700"></div>
+
+                  <Linkedin className="w-5 h-5 transition-transform group-hover:scale-110" />
+                  <span>Consulter mon LinkedIn</span>
+
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
