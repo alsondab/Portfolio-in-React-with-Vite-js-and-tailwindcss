@@ -10,26 +10,32 @@ import { Footer } from "../components/Footer";
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-500">
       {/* Theme Toggle */}
       <ThemeToggle />
+      
       {/* Background Effects */}
-      <StarBackground />
+      <div className="fixed inset-0 z-0 transition-opacity duration-500">
+        <StarBackground />
+      </div>
 
-      {/* Navbar */}
-      <Navbar />
+      {/* Content Container */}
+      <div className="relative z-10">
+        {/* Navbar */}
+        <Navbar />
 
-      {/* Main Content */}
-        <main>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ContactSection />
-      </main>
-  
-      {/* Footer */}
-      <Footer />
+        {/* Main Content */}
+        <main className="transition-colors duration-500">
+          <HeroSection />
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <ContactSection />
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </div>
     </div>
   );
 };

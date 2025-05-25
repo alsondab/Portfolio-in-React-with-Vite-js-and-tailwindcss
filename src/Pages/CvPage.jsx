@@ -42,15 +42,27 @@ export default function CVPage() {
       title: 'Développeur Web Junior (Stage)',
       company: 'Recherche active de stage',
       period: '2025 - À définir',
-      description: 'Recherche d\'opportunité de stage pour appliquer mes compétences en développement web et contribuer à des projets concrets.',
-      type: 'stage'
+      description: 'En recherche active d\'une opportunité de stage pour mettre en pratique mes compétences :',
+      type: 'stage',
+      skills: ['Développement Full-Stack', 'Architecture Moderne', 'Méthodologies Agiles'],
+      objectives: [
+        'Contribuer à des projets d\'envergure avec Next.js et React',
+        'Participer au développement d\'APIs RESTful',
+        'Collaborer au sein d\'une équipe technique expérimentée'
+      ]
     },
     {
       title: 'Projets Freelance',
       company: 'Travail indépendant',
       period: '2023 - Présent',
-      description: 'Développement de sites web pour petites entreprises locales, maintenance et optimisation de sites existants.',
-      type: 'freelance'
+      description: 'Conception et développement de solutions web personnalisées :',
+      type: 'freelance',
+      achievements: [
+        'Développement de sites vitrines et e-commerce avec Next.js',
+        'Intégration de systèmes de paiement et d\'authentification',
+        'Optimisation SEO et performance des applications'
+      ],
+      technologies: ['Next.js', 'React', 'Node.js', 'TailwindCSS', 'PostgreSQL']
     }
   ];
 
@@ -58,54 +70,76 @@ export default function CVPage() {
     <div className={`max-w-6xl mx-auto bg-gradient-to-br from-slate-100 to-blue-50 p-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
 
       {/* Enhanced Header */}
-      <div className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 p-8 mb-8 overflow-hidden">
+      <div className="relative bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 p-8 mb-8 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-grid-white/10"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent transform -skew-y-12"></div>
         </div>
 
-        <div className="relative flex flex-col md:flex-row items-center justify-between">
-          <div className="flex items-center mb-6 md:mb-0">
-            <div className="relative">
-              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl mr-8 transform hover:scale-105 transition-transform duration-300 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <span className="text-4xl font-bold text-white">AD</span>
+        <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="relative group">
+              <div className="w-36 h-36 rounded-2xl overflow-hidden border-4 border-white/20 shadow-xl transform group-hover:scale-105 transition-all duration-300">
+                <img src="/public/portfolioProfil.png" alt="Photo de profil" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="absolute -bottom-3 -right-1 bg-orange-500 w-7 h-7 rounded-full border-4 border-white flex items-center justify-center">
+              <div className="absolute -bottom-3 -right-1 bg-gradient-to-r from-orange-500 to-red-500 w-8 h-8 rounded-full border-4 border-white flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
                 <Search className="w-3 h-3 text-white" />
               </div>
             </div>
-            <div className="text-white">
-              <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                ALI DABO
-              </h1>
-              <p className="text-xl text-blue-200 mb-3">Étudiant Développeur Web Full-Stack</p>
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center text-blue-200">
+
+            <div className="text-center md:text-left">
+              <div className="space-y-1 mb-4">
+                <h1 className="text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+                  ALI DABO
+                </h1>
+                <p className="text-xl text-blue-200">Développeur Full-Stack</p>
+                <p className="text-blue-300 text-sm">Étudiant en Génie Logiciel</p>
+              </div>
+
+              <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                <div className="flex items-center px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-sm text-blue-100">
                   <MapPin className="w-4 h-4 mr-1" />
-                  <span className="text-sm">Abidjan, CI</span>
+                  <span>Abidjan, CI</span>
                 </div>
-                <div className="flex items-center text-orange-300">
+                <div className="flex items-center px-3 py-1 rounded-full bg-orange-500/20 backdrop-blur-sm text-sm text-orange-200">
                   <Search className="w-4 h-4 mr-1" />
-                  <span className="text-sm">Recherche Stage</span>
+                  <span>Stage 2024</span>
                 </div>
-                <div className="flex items-center text-green-300">
+                <div className="flex items-center px-3 py-1 rounded-full bg-green-500/20 backdrop-blur-sm text-sm text-green-200">
                   <GraduationCap className="w-4 h-4 mr-1" />
-                  <span className="text-sm">Licence 3</span>
+                  <span>Licence 3</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Quick Contact */}
-          <div className="flex flex-col space-y-3">
-            <a href="mailto:contact@alidabo.site" className="group flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white hover:bg-white/30 transition-all duration-300">
-              <Mail className="w-4 h-4 mr-2 group-hover:animate-bounce" />
+          <div className="flex flex-col gap-3">
+            <a href="mailto:contact@alidabo.site" 
+              className="group flex items-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-sm px-4 py-2.5 rounded-xl text-white transition-all duration-300">
+              <Mail className="w-4 h-4 group-hover:animate-bounce" />
               <span className="text-sm">contact@alidabo.site</span>
             </a>
-            <a href="tel:+22507101458664" className="group flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white hover:bg-white/30 transition-all duration-300">
-              <Phone className="w-4 h-4 mr-2 group-hover:animate-bounce" />
+            <a href="tel:+22507101458664" 
+              className="group flex items-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-sm px-4 py-2.5 rounded-xl text-white transition-all duration-300">
+              <Phone className="w-4 h-4 group-hover:animate-bounce" />
               <span className="text-sm">+225 07 10 14 58 64</span>
             </a>
+            <div className="flex justify-center gap-3 mt-1">
+              <a href="https://github.com/alsondab" target="_blank" rel="noopener noreferrer"
+                className="p-2 bg-white/10 hover:bg-white/15 rounded-lg transition-all duration-300">
+                <Github className="w-5 h-5 text-white" />
+              </a>
+              <a href="https://www.linkedin.com/in/alsondab" target="_blank" rel="noopener noreferrer"
+                className="p-2 bg-white/10 hover:bg-white/15 rounded-lg transition-all duration-300">
+                <Linkedin className="w-5 h-5 text-white" />
+              </a>
+              <a href="https://alidabo.site" target="_blank" rel="noopener noreferrer"
+                className="p-2 bg-white/10 hover:bg-white/15 rounded-lg transition-all duration-300">
+                <Globe className="w-5 h-5 text-white" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -117,13 +151,15 @@ export default function CVPage() {
             <Target className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Profil Professionnel</h2>
-          <p className="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto">
-            <span className="font-semibold text-blue-600">Futur diplômé en Informatique de Génie Logiciel</span> (obtention de la Licence prévue en 2024),
-            je suis un <span className="font-semibold text-blue-600">développeur Full-Stack passionné</span> et proactif, actuellement en recherche de stages.
-            Fort d'une solide maîtrise en <span className="font-medium text-purple-600">React, Node.js et technologies modernes</span> acquise tout au long de mon cursus,
-            je combine créativité technique et approche solution-oriented pour transformer vos idées en applications web performantes.
-            Ma capacité d'adaptation, mon goût pour l'innovation et mon désir d'apprendre rapidement me permettent d'apporter une réelle valeur ajoutée à vos projets digitaux,
-            particulièrement dans le cadre d'une première expérience professionnelle significative.
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <span className="px-4 py-2 bg-blue-50 text-blue-700 rounded-full font-medium">Développeur Full-Stack</span>
+            <span className="px-4 py-2 bg-purple-50 text-purple-700 rounded-full font-medium">Licence 3 Génie Logiciel</span>
+            <span className="px-4 py-2 bg-green-50 text-green-700 rounded-full font-medium">Recherche Stage 2024</span>
+          </div>
+          <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+            Passionné par le développement web moderne avec <span className="font-medium text-blue-600">Next.js</span> et l'écosystème React.
+            Je combine créativité technique et approche pragmatique pour créer des applications performantes et évolutives.
+            À la recherche d'une opportunité de stage pour contribuer à des projets innovants et enrichir mon expertise technique.
           </p>
         </div>
       </div>
@@ -204,7 +240,7 @@ export default function CVPage() {
                 Technologies Additionnelles
               </h3>
               <div className="flex flex-wrap gap-2">
-                {['HTML5', 'CSS3', 'Bootstrap', 'Angular', 'Node.js', 'Express', 'Django', 'MySQL', 'Git', 'Netlify', 'Vercel'].map((tech, index) => (
+                {['HTML5&CSS3', 'Next.js', 'Angular', 'Node.js', 'Express', 'Django', 'MySQL', 'Git', 'Netlify', 'Vercel', 'shadcn/ui', 'T3 Stack', 'next-starter-leerob', 'ShipFast', 'NOWTS.APP', 'Neon DB', 'Cursor', 'tweakcn.com', '21st.dev'].map((tech, index) => (
                   <span key={index} className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-xs rounded-full hover:from-blue-200 hover:to-purple-200 transition-all cursor-pointer transform hover:scale-105">
                     {tech}
                   </span>
@@ -308,24 +344,89 @@ export default function CVPage() {
               <h2 className="text-2xl font-bold text-gray-800">Expérience & Recherche</h2>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               {experiences.map((exp, index) => (
-                <div key={index} className="border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800">{exp.title}</h3>
-                      <p className="text-blue-600 font-medium">{exp.company}</p>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-sm text-gray-500">{exp.period}</span>
-                      <div className={`inline-block px-3 py-1 rounded-full text-xs mt-1 ${
-                        exp.type === 'stage' ? 'bg-orange-100 text-orange-800' : 'bg-blue-100 text-blue-800'
-                        }`}>
-                        {exp.type === 'stage' ? 'Recherche' : 'Expérience'}
+                <div key={index} className="relative">
+                  <div className="flex">
+                    <div className={`w-1 ${exp.type === 'stage' ? 'bg-gradient-to-b from-orange-500 to-red-500' : 'bg-gradient-to-b from-blue-500 to-purple-500'} rounded-full mr-6`}></div>
+                    <div className="flex-1">
+                      <div className={`rounded-xl p-6 transition-all duration-300 ${
+                        exp.type === 'stage' 
+                          ? 'bg-orange-50 border-2 border-orange-200 hover:border-orange-300' 
+                          : 'bg-blue-50 border-2 border-blue-200 hover:border-blue-300'
+                      }`}>
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                          <div>
+                            <h3 className="text-xl font-semibold text-gray-800 mb-1">{exp.title}</h3>
+                            <p className={`font-medium ${exp.type === 'stage' ? 'text-orange-600' : 'text-blue-600'}`}>
+                              {exp.company}
+                            </p>
+                          </div>
+                          <div className="mt-2 md:mt-0 flex items-center gap-3">
+                            <span className="text-sm text-gray-500">{exp.period}</span>
+                            <span className={`px-3 py-1 rounded-full text-xs ${
+                              exp.type === 'stage' 
+                                ? 'bg-orange-100 text-orange-800' 
+                                : 'bg-blue-100 text-blue-800'
+                            }`}>
+                              {exp.type === 'stage' ? 'Recherche Active' : 'En cours'}
+                            </span>
+                          </div>
+                        </div>
+
+                        <p className="text-gray-600 mb-4">{exp.description}</p>
+
+                        {exp.type === 'stage' ? (
+                          <>
+                            <div className="mb-4">
+                              <div className="flex flex-wrap gap-2 mb-3">
+                                {exp.skills.map((skill, idx) => (
+                                  <span key={idx} className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm">
+                                    {skill}
+                                  </span>
+                                ))}
+                              </div>
+                              <ul className="space-y-2">
+                                {exp.objectives.map((objective, idx) => (
+                                  <li key={idx} className="flex items-start">
+                                    <CheckCircle className="w-5 h-5 text-orange-500 mr-2 flex-shrink-0 mt-0.5" />
+                                    <span className="text-gray-600">{objective}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div className="mt-4 flex justify-end">
+                              <a
+                                href="mailto:contact@alidabo.site"
+                                className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium"
+                              >
+                                <Mail className="w-4 h-4" />
+                                Me contacter pour un stage
+                              </a>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <ul className="space-y-2 mb-4">
+                              {exp.achievements.map((achievement, idx) => (
+                                <li key={idx} className="flex items-start">
+                                  <CheckCircle className="w-5 h-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
+                                  <span className="text-gray-600">{achievement}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <div className="flex flex-wrap gap-2">
+                              {exp.technologies.map((tech, idx) => (
+                                <span key={idx} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
-                  <p className="text-gray-600 leading-relaxed">{exp.description}</p>
                 </div>
               ))}
             </div>
@@ -488,21 +589,26 @@ export default function CVPage() {
               <h2 className="text-2xl font-bold text-gray-800 mb-4">Références & Portfolio</h2>
               <p className="text-gray-600 mb-8 text-lg">Projets et recommandations disponibles en ligne</p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-
-                <button
-                  onClick={() => window.open("https://www.linkedin.com/in/alsondab", "_blank")}
-                  className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+              <div className="flex justify-center">
+                <a href="https://www.linkedin.com/in/alsondab" target="_blank" rel="noopener noreferrer"
+                  className="group flex flex-col items-center p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 w-full max-w-sm"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 group-hover:translate-x-full transition-all duration-700"></div>
+                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
+                    <Linkedin className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-gray-800 mb-2">LinkedIn</h3>
+                  <p className="text-sm text-gray-600 text-center">Parcours professionnel et recommandations</p>
+                </a>
+              </div>
 
-                  <Linkedin className="w-5 h-5 transition-transform group-hover:scale-110" />
-                  <span>Consulter mon LinkedIn</span>
-
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </button>
+              <div className="mt-8 flex justify-center">
+                <a
+                  href="mailto:contact@alidabo.site"
+                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>Me contacter pour plus d'informations</span>
+                </a>
               </div>
             </div>
           </div>

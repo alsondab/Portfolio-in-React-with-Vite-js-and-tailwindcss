@@ -71,7 +71,7 @@
 @layer base {
   :root {
     /* Palette claire avec des couleurs plus harmonieuses */
-    --background: 210 40% 98%;
+    --background: 0 0% 100%;
     --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
@@ -93,6 +93,10 @@
     --warning: 38 92% 50%;
     --error: 0 84% 60%;
     --info: 200 98% 45%;
+
+    /* Variables pour le fond */
+    --tw-bg-background: #ffffff;
+    --gradient-opacity: 0.05;
   }
 
   .dark {
@@ -119,10 +123,14 @@
     --warning: 38 92% 45%;
     --error: 0 84% 65%;
     --info: 200 98% 50%;
+
+    /* Variables pour le fond sombre */
+    --tw-bg-background: #0B1026;
+    --gradient-opacity: 0.8;
   }
 
   * {
-    @apply border-border;
+    @apply border-border transition-colors duration-300;
   }
 
   html {
@@ -130,13 +138,22 @@
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-all duration-500;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
   a, button {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 transition-all duration-300;
   }
+}
+
+/* Styles de transition globaux pour le thème */
+.theme-transition,
+.theme-transition *,
+.theme-transition *:before,
+.theme-transition *:after {
+  transition: all 0.5s ease-in-out !important;
+  transition-delay: 0 !important;
 }
 
 @utility container {

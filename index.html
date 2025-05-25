@@ -1,18 +1,41 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.ico" />
+    <link rel="icon" href="public/logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ali Dabo - Développeur Web | alidabo.site</title>
-    <meta name="description" content="Portfolio d'Ali Dabo, développeur web spécialisé en solutions digitales modernes. Contact : contact@alidabo.site" />
+    <meta name="theme-color" content="#1955B9" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- SEO -->
+    <title>Ali Dabo - Développeur Full-Stack | Portfolio</title>
+    <meta name="description" content="Portfolio d'Ali Dabo, développeur Full-Stack spécialisé en Next.js, React et solutions web modernes. En recherche de stage pour 2024." />
+    <meta name="keywords" content="Ali Dabo, développeur web, full-stack, Next.js, React, portfolio, stage" />
     <meta name="author" content="Ali Dabo" />
-    <meta property="og:title" content="Ali Dabo - Développeur Web" />
-    <meta property="og:description" content="Portfolio professionnel d'Ali Dabo, développeur web" />
-    <meta property="og:url" content="https://alidabo.site" />
+    
+    <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://alidabo.site" />
+    <meta property="og:title" content="Ali Dabo - Développeur Full-Stack" />
+    <meta property="og:description" content="Portfolio professionnel d'Ali Dabo, développeur Full-Stack spécialisé en Next.js et React" />
+    <meta property="og:image" content="/public/portfolioProfil.png" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ali Dabo - Développeur Full-Stack" />
+    <meta name="twitter:description" content="Portfolio professionnel d'Ali Dabo, développeur Full-Stack" />
+    <meta name="twitter:image" content="/public/portfolioProfil.png" />
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
-  <body>
+  <body class="antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

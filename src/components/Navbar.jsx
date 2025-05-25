@@ -19,14 +19,15 @@ export const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
 
-      // Detect active section
       const sections = navItems.map(item => item.href.substring(1));
       const currentPosition = window.scrollY + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= currentPosition) {
-          setActiveSection(sections[i]);
+          if (activeSection !== sections[i]) {
+            setActiveSection(sections[i]);
+          }
           break;
         }
       }
@@ -34,32 +35,36 @@ export const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [activeSection]);
 
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300",
+        "fixed w-full z-40 transition-all duration-500",
         isScrolled
-          ? "py-3 bg-background/90 backdrop-blur-md border-b border-border shadow-sm"
+          ? "py-3 bg-background/80 backdrop-blur-xl border-b border-border shadow-lg"
           : "py-5"
       )}
     >
-      <div className="container flex items-center justify-between ">
-        {/* Logo */}
+      <div className="container flex items-center justify-between">
         <a
           href="#hero"
-          className="flex items-center focus-ring rounded-md"
+          className="group flex items-center gap-2 focus-ring rounded-lg p-1"
         >
           <img
             src="/logo.ico"
             alt="Logo"
-            className="h-20 w-auto object-contain transition-transform duration-300 hover:scale-105"
+            className="h-12 w-auto object-contain transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
           />
+          <span className={cn(
+            "font-semibold text-lg transition-all duration-500",
+            isScrolled ? "text-foreground" : "text-primary"
+          )}>
+            Ali Dabo
+          </span>
         </a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
             return (
@@ -67,47 +72,47 @@ export const Navbar = () => {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "py-2 px-3 rounded-md transition-colors duration-300 font-medium relative focus-ring",
+                  "py-2 px-4 rounded-lg transition-all duration-300 font-medium relative group",
+                  "hover:text-primary focus-ring",
                   isActive
-                    ? "text-primary"
-                    : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                    ? "text-primary bg-primary/5"
+                    : "text-foreground/80"
                 )}
               >
                 {item.name}
-                {isActive && (
-                  <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-primary rounded-full" />
-                )}
+                <span className={cn(
+                  "absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full transition-all duration-300 transform origin-left",
+                  isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                )} />
               </a>
             );
           })}
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className={cn(
-            "md:hidden p-2 text-foreground z-50 rounded-full",
-            "transition-colors duration-300 focus-ring",
-            isMenuOpen ? "bg-primary/10 text-primary" : "hover:bg-primary/5"
+            "md:hidden p-2 rounded-lg transition-all duration-300",
+            "hover:bg-primary/5 focus-ring",
+            isMenuOpen ? "bg-primary/10 text-primary rotate-90" : "rotate-0"
           )}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Mobile Navigation Panel */}
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
+            "fixed inset-0 bg-background/98 backdrop-blur-xl z-40 flex items-center justify-center",
+            "transition-all duration-500 md:hidden",
             isMenuOpen
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
           )}
         >
-          <div className="flex flex-col space-y-6 text-xl w-full max-w-xs">
-            {navItems.map((item) => {
+          <div className="flex flex-col items-center gap-6 text-xl">
+            {navItems.map((item, index) => {
               const isActive = activeSection === item.href.substring(1);
               return (
                 <a
@@ -115,10 +120,12 @@ export const Navbar = () => {
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
                   className={cn(
-                    "py-3 px-5 rounded-lg font-medium text-center transition-colors duration-300",
+                    "py-3 px-6 rounded-xl font-medium text-center transition-all duration-300",
+                    "transform",
+                    isMenuOpen ? `translate-y-0 opacity-100 delay-[${index * 100}ms]` : "-translate-y-8 opacity-0",
                     isActive
-                      ? "bg-primary/10 text-primary"
-                      : "text-foreground/80 hover:bg-primary/5 hover:text-primary"
+                      ? "bg-primary/10 text-primary scale-110"
+                      : "hover:bg-primary/5 hover:text-primary hover:scale-110"
                   )}
                 >
                   {item.name}

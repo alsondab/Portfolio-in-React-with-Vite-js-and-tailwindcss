@@ -1,4 +1,3 @@
-
 // ProjectsSection corrigé
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
@@ -103,7 +102,7 @@ export const ProjectsSection = () => {
   return (
     <motion.section
       id="projects"
-      className="py-20 md:py-32 bg-gradient-to-b from-secondary/10 to-background relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-b from-secondary/10 via-background to-background dark:from-secondary/5 dark:via-background dark:to-background relative overflow-hidden"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
@@ -111,8 +110,8 @@ export const ProjectsSection = () => {
     >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-300/10 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-300/10 dark:bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -129,7 +128,7 @@ export const ProjectsSection = () => {
 
           <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
 
-          <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Voici quelques-uns de mes projets récents. Chaque projet a été soigneusement conçu avec une attention particulière aux détails, à la performance et à l'expérience utilisateur.
           </p>
         </motion.div>
@@ -138,7 +137,7 @@ export const ProjectsSection = () => {
           {projectsData.map((project, index) => (
             <motion.div
               key={index}
-              className="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden flex flex-col h-full shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700"
+              className="relative bg-white text-gray-900 dark:text-white dark:bg-gray-900 rounded-xl overflow-hidden flex flex-col h-full shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-800"
               variants={projectCardVariants}
               whileHover="hover"
             >
@@ -162,7 +161,7 @@ export const ProjectsSection = () => {
                   {project.tags.map(tag => (
                     <span
                       key={tag}
-                      className="inline-block bg-white/90 dark:bg-gray-800/90 text-blue-700 dark:text-blue-400 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm backdrop-blur-sm"
+                      className="inline-block bg-white/90 text-gray-900 dark:bg-gray-900/90 dark:text-gray-100 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm backdrop-blur-sm"
                     >
                       {tag}
                     </span>
@@ -176,48 +175,36 @@ export const ProjectsSection = () => {
                   {project.title}
                 </h3>
 
-                <p className="text-gray-700 dark:text-gray-300 text-sm mb-6 flex-grow line-clamp-4">
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-6 flex-grow line-clamp-4">
                   {project.description}
                 </p>
 
-                {/* Action buttons */}
+                {/* Project links */}
                 <div className="flex gap-3 mt-auto">
-                  {project.status === "in-progress" ? (
-                    <div className="inline-flex items-center justify-center px-4 py-2 text-gray-700 dark:text-gray-300 rounded-md bg-gray-100 dark:bg-gray-700/50 flex-1">
-                      <Clock className="mr-2 h-4 w-4" />
-                      Bientôt disponible
-                    </div>
-                  ) : project.isVideo ? (
+                  {project.liveLink && (
                     <a
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-md shadow-md hover:shadow-lg transition-all duration-300 flex-1"
+                      className="flex items-center gap-2 px-4 py-2 bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 text-primary dark:text-primary-foreground rounded-lg transition-colors duration-300"
                     >
-                      <Play className="mr-2 h-4 w-4" />
-                      Voir la vidéo
-                    </a>
-                  ) : (
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-md shadow-md hover:shadow-lg transition-all duration-300 flex-1"
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Démo live
+                      {project.isVideo ? <Play className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
+                      <span className="text-sm font-medium">
+                        {project.isVideo ? "Voir la démo" : "Voir le site"}
+                      </span>
                     </a>
                   )}
-
-                  <a
-                    href={project.repoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/70 transition-all duration-300 flex-1"
-                  >
-                    <Code className="mr-2 h-4 w-4" />
-                    Code source
-                  </a>
+                  {project.repoLink && (
+                    <a
+                      href={project.repoLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-lg transition-colors duration-300"
+                    >
+                      <Github className="w-4 h-4" />
+                      <span className="text-sm font-medium">Code source</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

@@ -238,12 +238,11 @@ export const SkillsSection = () => {
   };
 
   return (
-    <section id="skills" className="py-24 relative bg-gradient-to-b from-secondary/10 to-background dark:from-secondary/10 dark:to-background">
+    <section id="skills" className="py-24 relative ">
       {/* Éléments décoratifs en arrière-plan */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -left-64 top-1/4 w-96 h-96 rounded-full blur-3xl"></div>
-        <div className="absolute -right-64 bottom-1/4 w-96 h-96  rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-1/2 "></div>
+        <div className="absolute -left-64 top-1/4 w-96 h-96 "></div>
+        <div className="absolute -right-64 bottom-1/4 w-96 h-96 "></div>
       </div>
 
       <div className="container mx-auto max-w-6xl px-4 relative z-10">
@@ -254,11 +253,11 @@ export const SkillsSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800 dark:text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Compétences <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">Techniques</span>
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Voici un aperçu des technologies et outils que je maîtrise. Ces compétences sont en constante évolution au fil de mes projets et apprentissages.
           </p>
         </motion.div>
@@ -279,7 +278,7 @@ export const SkillsSection = () => {
                   px-5 py-3 rounded-xl transition-all duration-300 flex items-center gap-2
                   ${activeCategory === category.id
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/20 dark:shadow-purple-900/30 font-medium translate-y-0 hover:translate-y-0"
-                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1"
+                    : "bg-card dark:bg-gray-800 text-foreground shadow-sm hover:shadow-md hover:-translate-y-1"
                   }
                 `}
                 whileHover={{ scale: 1.03 }}
@@ -306,7 +305,7 @@ export const SkillsSection = () => {
               animate="animate"
               exit="exit"
               variants={activeCategory3D}
-              className="text-center max-w-2xl mx-auto mb-8 px-6 py-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-sm text-gray-700 dark:text-gray-200"
+              className="text-center max-w-2xl mx-auto mb-8 px-6 py-4 bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-sm text-muted-foreground"
             >
               {categoryGroups.find(cat => cat.id === activeCategory)?.description}
             </motion.div>
@@ -324,20 +323,20 @@ export const SkillsSection = () => {
             <motion.div
               key={skill.name}
               variants={skillVariants}
-              className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300"
+              className="relative bg-white text-gray-900 dark:text-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300"
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => setHoveredSkill(null)}
               whileHover={{ y: -5 }}
             >
               {/* En-tête avec nom et pourcentage */}
               <div className="flex justify-between items-center px-6 pt-6 pb-3">
-                <h3 className="font-bold text-lg text-gray-800 dark:text-white">
+                <h3 className="font-bold text-lg text-gray-900 dark:text-white">
                   {skill.name}
                 </h3>
                 <span className={`
                   font-mono text-sm px-3 py-1 rounded-full ${hoveredSkill === skill.name
                     ? "bg-gradient-to-r " + skill.color + " text-white"
-                    : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                    : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
                   } transition-all duration-300
                 `}>
                   {skill.level}%
@@ -345,12 +344,12 @@ export const SkillsSection = () => {
               </div>
 
               {/* Description de la compétence */}
-              <p className="px-6 pb-3 text-sm text-gray-600 dark:text-gray-400 h-10 line-clamp-2">
+              <p className="px-6 pb-3 text-sm text-gray-600 dark:text-gray-300 h-10 line-clamp-2">
                 {skill.description}
               </p>
 
               {/* Niveau en texte */}
-              <div className="px-6 pb-3 text-xs text-gray-500 dark:text-gray-500 font-medium">
+              <div className="px-6 pb-3 text-xs text-gray-500 dark:text-gray-400 font-medium">
                 Niveau: {getLevelText(skill.level)}
               </div>
 
@@ -363,7 +362,7 @@ export const SkillsSection = () => {
                       flex-1 h-1 mx-0.5 rounded-full transition-all duration-500
                       ${index < skill.level / 10
                         ? `bg-gradient-to-r ${skill.color}`
-                        : "bg-gray-200 dark:bg-gray-700"
+                        : "bg-gray-200 dark:bg-gray-800"
                       }
                       ${hoveredSkill === skill.name && index < skill.level / 10
                         ? "h-2"
