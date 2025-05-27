@@ -30,6 +30,14 @@ const projectsData = [
     tags: ["React", "Django", "PostgreSQL"],
     repoLink: "https://github.com/AgohChris/OldTopic.git",
     status: "in-progress"
+  },
+  {
+    title: "Wave Cloning",
+    description: "Une application de transfert d'argent inspirée de Wave, développée en collaboration avec mon condisciple. Ce projet utilise React pour l'interface utilisateur et localStorage pour la gestion des données côté client. L'application permet aux utilisateurs de simuler des transferts d'argent et de gérer leur solde virtuel.",
+    imageSrc: "wave-clone.png",
+    tags: ["React", "localStorage", "Tailwind CSS"],
+    repoLink: "https://github.com/AgohChris/WaveClonning.git",
+    status: "completed"
   }
 ];
 
@@ -114,7 +122,7 @@ export const ProjectsSection = () => {
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: -30 }}
@@ -133,11 +141,11 @@ export const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 auto-rows-max">
           {projectsData.map((project, index) => (
             <motion.div
               key={index}
-              className="relative bg-white text-gray-900 dark:text-white dark:bg-gray-900 rounded-xl overflow-hidden flex flex-col h-full shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-800"
+              className="relative bg-card/50 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col h-full shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 border border-border/50"
               variants={projectCardVariants}
               whileHover="hover"
             >
@@ -145,37 +153,45 @@ export const ProjectsSection = () => {
               {renderStatusBadge(project.status, project.isVideo)}
 
               {/* Project image */}
-              <div className="relative h-56 w-full overflow-hidden group">
+              <div className="relative h-64 w-full overflow-hidden group">
                 <img
                   alt={project.title}
-                  className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110 filter group-hover:brightness-110"
+                  className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105 filter brightness-95 group-hover:brightness-100"
                   src={project.imageSrc}
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                  width={640}
+                  height={360}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-70 group-hover:opacity-60 transition-opacity duration-300"></div>
 
-                {/* Tags positioned over the image at bottom */}
-                <motion.div
-                  className="absolute bottom-3 left-3 flex flex-wrap gap-2"
-                  variants={tagVariants}
-                >
-                  {project.tags.map(tag => (
-                    <span
-                      key={tag}
-                      className="inline-block bg-white/90 text-gray-900 dark:bg-gray-900/90 dark:text-gray-100 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm backdrop-blur-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </motion.div>
+                {/* Project title overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg">
+                    {project.title}
+                  </h3>
+                  
+                  {/* Tags positioned over the image at bottom */}
+                  <motion.div
+                    className="flex flex-wrap gap-2"
+                    variants={tagVariants}
+                  >
+                    {project.tags.map(tag => (
+                      <span
+                        key={tag}
+                        className="inline-block bg-white/90 text-gray-900 dark:bg-gray-900/90 dark:text-gray-100 text-xs font-semibold px-2.5 py-1 rounded-full shadow-md backdrop-blur-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </motion.div>
+                </div>
               </div>
 
               {/* Project content */}
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
-                  {project.title}
-                </h3>
-
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-6 flex-grow line-clamp-4">
+              <div className="p-6 flex flex-col flex-grow bg-card/50 backdrop-blur-sm border-t border-border/50">
+                <p className="text-muted-foreground text-sm mb-6 flex-grow">
                   {project.description}
                 </p>
 
@@ -186,12 +202,10 @@ export const ProjectsSection = () => {
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 text-primary dark:text-primary-foreground rounded-lg transition-colors duration-300"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors duration-300"
                     >
-                      {project.isVideo ? <Play className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
-                      <span className="text-sm font-medium">
-                        {project.isVideo ? "Voir la démo" : "Voir le site"}
-                      </span>
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Voir le projet</span>
                     </a>
                   )}
                   {project.repoLink && (
@@ -199,10 +213,10 @@ export const ProjectsSection = () => {
                       href={project.repoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-lg transition-colors duration-300"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border/50 text-foreground hover:bg-secondary/50 transition-colors duration-300"
                     >
                       <Github className="w-4 h-4" />
-                      <span className="text-sm font-medium">Code source</span>
+                      <span>Code source</span>
                     </a>
                   )}
                 </div>

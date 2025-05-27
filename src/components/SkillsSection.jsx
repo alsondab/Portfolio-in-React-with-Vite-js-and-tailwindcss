@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 // eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from "framer-motion";
-import { Code, Server, Wrench, Monitor, ChevronRight, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Code, Server, Wrench, Monitor, ChevronRight } from "lucide-react";
+import { cn } from "../lib/utils";
 
 // Données des compétences avec structure améliorée
 const skills = [
@@ -157,6 +158,20 @@ const skills = [
     description: "Continuous deployment, serverless functions",
     color: "from-teal-700 to-teal-500"
   },
+  {
+    name: "localStorage",
+    level: 70,
+    category: "tools",
+    description: "Client-side storage, data persistence, state management",
+    color: "from-yellow-500 to-yellow-700"
+  },
+  {
+    name: "Cursor",
+    level: 60,
+    category: "tools",
+    description: "AI-powered code editing, pair programming",
+    color: "from-purple-500 to-purple-700"
+  },
 ];
 
 // Groupes de catégories avec icônes et descriptions
@@ -198,19 +213,34 @@ const getLevelText = (level) => {
 // Composant principal
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [hoveredSkill, setHoveredSkill] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
-  // Simuler un chargement progressif pour l'animation
   useEffect(() => {
-    setIsLoaded(true);
+    const currentRef = sectionRef.current;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
   }, []);
 
   const filteredSkills = skills.filter(
     (skill) => activeCategory === "all" || skill.category === activeCategory
   );
 
-  // Variants pour les animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -222,174 +252,97 @@ export const SkillsSection = () => {
     }
   };
 
-  const skillVariants = {
+  const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 100 }
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
     }
   };
 
-  const activeCategory3D = {
-    initial: { scale: 1 },
-    animate: { scale: 1.05 },
-    exit: { scale: 0.95, opacity: 0 }
-  };
-
   return (
-    <section id="skills" className="py-24 relative ">
-      {/* Éléments décoratifs en arrière-plan */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -left-64 top-1/4 w-96 h-96 "></div>
-        <div className="absolute -right-64 bottom-1/4 w-96 h-96 "></div>
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="py-20 md:py-32 bg-gradient-to-b from-secondary/10 via-background to-background relative overflow-hidden"
+    >
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden -z-10">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto max-w-6xl px-4 relative z-10">
-        {/* En-tête de section avec titre et description */}
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Compétences <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">Techniques</span>
+            Mes <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Compétences</span>
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Voici un aperçu des technologies et outils que je maîtrise. Ces compétences sont en constante évolution au fil de mes projets et apprentissages.
+            Un aperçu de mes compétences techniques et des outils que j'utilise quotidiennement.
           </p>
         </motion.div>
 
-        {/* Navigation des catégories */}
-        <div className="mb-12">
-          <motion.div
-            className="flex flex-wrap justify-center gap-3 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {categoryGroups.map((category) => (
-              <motion.button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`
-                  px-5 py-3 rounded-xl transition-all duration-300 flex items-center gap-2
-                  ${activeCategory === category.id
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/20 dark:shadow-purple-900/30 font-medium translate-y-0 hover:translate-y-0"
-                    : "bg-card dark:bg-gray-800 text-foreground shadow-sm hover:shadow-md hover:-translate-y-1"
-                  }
-                `}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className={`
-                  ${activeCategory === category.id
-                    ? "text-white"
-                    : "text-blue-500 dark:text-blue-400"
-                  }
-                `}>
-                  {category.icon}
-                </span>
-                {category.label}
-              </motion.button>
-            ))}
-          </motion.div>
-
-          {/* Description de la catégorie active */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={activeCategory3D}
-              className="text-center max-w-2xl mx-auto mb-8 px-6 py-4 bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-sm text-muted-foreground"
+        {/* Category filters */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {categoryGroups.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={cn(
+                "px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300",
+                "bg-card/50 border border-border/50 backdrop-blur-sm shadow-sm",
+                "hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20",
+                activeCategory === category.id && "bg-primary/10 text-primary border-primary/30"
+              )}
             >
-              {categoryGroups.find(cat => cat.id === activeCategory)?.description}
-            </motion.div>
-          </AnimatePresence>
+              {category.icon}
+              <span>{category.label}</span>
+            </button>
+          ))}
         </div>
 
-        {/* Grille des compétences */}
+        {/* Skills grid */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
+          animate="visible"
         >
-          {filteredSkills.map((skill) => (
+          {filteredSkills.map((skill, index) => (
             <motion.div
-              key={skill.name}
-              variants={skillVariants}
-              className="relative bg-white text-gray-900 dark:text-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300"
-              onMouseEnter={() => setHoveredSkill(skill.name)}
-              onMouseLeave={() => setHoveredSkill(null)}
-              whileHover={{ y: -5 }}
+              key={index}
+              variants={itemVariants}
+              className="group relative p-6 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20 overflow-hidden"
             >
-              {/* En-tête avec nom et pourcentage */}
-              <div className="flex justify-between items-center px-6 pt-6 pb-3">
-                <h3 className="font-bold text-lg text-gray-900 dark:text-white">
-                  {skill.name}
-                </h3>
-                <span className={`
-                  font-mono text-sm px-3 py-1 rounded-full ${hoveredSkill === skill.name
-                    ? "bg-gradient-to-r " + skill.color + " text-white"
-                    : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-                  } transition-all duration-300
-                `}>
-                  {skill.level}%
-                </span>
-              </div>
-
-              {/* Description de la compétence */}
-              <p className="px-6 pb-3 text-sm text-gray-600 dark:text-gray-300 h-10 line-clamp-2">
-                {skill.description}
-              </p>
-
-              {/* Niveau en texte */}
-              <div className="px-6 pb-3 text-xs text-gray-500 dark:text-gray-400 font-medium">
-                Niveau: {getLevelText(skill.level)}
-              </div>
-
-              {/* Indicateur visuel du niveau sous forme de grille */}
-              <div className="flex pt-2 px-1 pb-1">
-                {[...Array(10)].map((_, index) => (
-                  <div
-                    key={index}
-                    className={`
-                      flex-1 h-1 mx-0.5 rounded-full transition-all duration-500
-                      ${index < skill.level / 10
-                        ? `bg-gradient-to-r ${skill.color}`
-                        : "bg-gray-200 dark:bg-gray-800"
-                      }
-                      ${hoveredSkill === skill.name && index < skill.level / 10
-                        ? "h-2"
-                        : ""
-                      }
-                    `}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-lg font-semibold text-foreground">{skill.name}</h3>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                    <span className="text-xs text-muted-foreground">({getLevelText(skill.level)})</span>
+                  </div>
+                </div>
+                <div className="w-full h-2 bg-secondary/30 rounded-full overflow-hidden mb-3">
+                  <motion.div
+                    className={cn("h-full rounded-full bg-gradient-to-r", skill.color)}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${skill.level}%` }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                   />
-                ))}
+                </div>
+                <p className="text-sm text-muted-foreground">{skill.description}</p>
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Appel à l'action */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-        >
-          <a
-            href="#projects"
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-full shadow-lg group transition-all duration-300 hover:shadow-xl"
-          >
-            <span>Voir mes projets</span>
-            <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-          </a>
         </motion.div>
       </div>
     </section>
