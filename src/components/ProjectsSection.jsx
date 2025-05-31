@@ -153,16 +153,17 @@ export const ProjectsSection = () => {
               {renderStatusBadge(project.status, project.isVideo)}
 
               {/* Project image */}
-              <div className="relative h-64 w-full overflow-hidden group">
+              <div className="relative h-64 w-full overflow-hidden group" style={{ aspectRatio: '16/9' }}>
                 <img
                   alt={project.title}
                   className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105 filter brightness-95 group-hover:brightness-100"
                   src={project.imageSrc}
-                  loading="lazy"
+                  loading={index === 0 ? "eager" : "lazy"}
                   decoding="async"
-                  fetchpriority="low"
+                  fetchPriority={index === 0 ? "high" : "low"}
                   width={640}
                   height={360}
+                  style={{ aspectRatio: '16/9' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-70 group-hover:opacity-60 transition-opacity duration-300"></div>
 
@@ -171,21 +172,21 @@ export const ProjectsSection = () => {
                   <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg">
                     {project.title}
                   </h3>
-                  
-                  {/* Tags positioned over the image at bottom */}
-                  <motion.div
+
+                {/* Tags positioned over the image at bottom */}
+                <motion.div
                     className="flex flex-wrap gap-2"
-                    variants={tagVariants}
-                  >
-                    {project.tags.map(tag => (
-                      <span
-                        key={tag}
+                  variants={tagVariants}
+                >
+                  {project.tags.map(tag => (
+                    <span
+                      key={tag}
                         className="inline-block bg-white/90 text-gray-900 dark:bg-gray-900/90 dark:text-gray-100 text-xs font-semibold px-2.5 py-1 rounded-full shadow-md backdrop-blur-sm"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </motion.div>
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </motion.div>
                 </div>
               </div>
 

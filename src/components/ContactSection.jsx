@@ -264,7 +264,7 @@ export const ContactSection = () => {
           animate={isVisible ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
         >
-          {contactInfo.map((item, index) => (
+              {contactInfo.map((item, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -278,24 +278,24 @@ export const ContactSection = () => {
             >
               <div className="flex flex-col items-center text-center gap-4">
                 <div className="p-4 rounded-xl bg-white/80 dark:bg-gray-900/80 shadow-sm">
-                  {item.icon}
-                </div>
+                        {item.icon}
+                      </div>
                 <div className="flex flex-col items-center space-y-2">
                   <h3 className="font-semibold text-lg">{item.title}</h3>
                   {item.type === "social" ? (
                     <div className="flex justify-center gap-4 mt-2">
                       {item.links.map((link, linkIndex) => (
-                        <a
+                              <a
                           key={linkIndex}
                           href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                                target="_blank"
+                                rel="noopener noreferrer"
                           className="group/link p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                        >
+                              >
                           {link.icon}
                           <span className="sr-only">{link.name}</span>
-                        </a>
-                      ))}
+                              </a>
+                            ))}
                     </div>
                   ) : (
                     item.href ? (
@@ -313,10 +313,10 @@ export const ContactSection = () => {
                     )
                   )}
                 </div>
-              </div>
+            </div>
             </motion.div>
           ))}
-        </motion.div>
+          </motion.div>
 
         {/* Contact form */}
         <motion.div
@@ -332,13 +332,13 @@ export const ContactSection = () => {
                   <label htmlFor="name" className="text-sm font-medium text-foreground">
                     Nom complet
                   </label>
-                  <input
-                    type="text"
-                    id="name"
+                    <input
+                      type="text"
+                      id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className={cn(
+                      value={formData.name}
+                      onChange={handleChange}
+                      className={cn(
                       "w-full px-4 py-2 rounded-lg bg-background/50 border border-border/50",
                       "focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30",
                       "placeholder:text-muted-foreground/60",
@@ -359,13 +359,13 @@ export const ContactSection = () => {
                   <label htmlFor="email" className="text-sm font-medium text-foreground">
                     Email
                   </label>
-                  <input
-                    type="email"
-                    id="email"
+                    <input
+                      type="email"
+                      id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={cn(
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={cn(
                       "w-full px-4 py-2 rounded-lg bg-background/50 border border-border/50",
                       "focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30",
                       "placeholder:text-muted-foreground/60",
@@ -386,20 +386,20 @@ export const ContactSection = () => {
                   <label htmlFor="message" className="text-sm font-medium text-foreground">
                     Message
                   </label>
-                  <textarea
-                    id="message"
+                    <textarea
+                      id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={5}
-                    className={cn(
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={5}
+                      className={cn(
                       "w-full px-4 py-2 rounded-lg bg-background/50 border border-border/50",
                       "focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30",
                       "placeholder:text-muted-foreground/60",
                       errors.message && "border-red-500/50 focus:ring-red-500/20 focus:border-red-500/30"
-                    )}
+                      )}
                     placeholder="Votre message..."
-                  />
+                    />
                   {errors.message && (
                     <p className="text-sm text-red-500 flex items-center gap-1">
                       <AlertCircle className="w-4 h-4" />
@@ -407,27 +407,27 @@ export const ContactSection = () => {
                     </p>
                   )}
                 </div>
-              </div>
+                </div>
 
               {/* Submit button */}
               <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn(
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={cn(
                   "w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium",
                   "flex items-center justify-center gap-2",
                   "transition-all duration-300 transform",
                   "hover:shadow-lg hover:shadow-primary/20",
                   "disabled:opacity-70 disabled:cursor-not-allowed"
-                )}
-              >
-                {isSubmitting ? (
-                  <>
+                  )}
+                >
+                  {isSubmitting ? (
+                    <>
                     <Loader2 className="w-4 h-4 animate-spin" />
                     Envoi en cours...
-                  </>
-                ) : formStatus === "success" ? (
-                  <>
+                    </>
+                  ) : formStatus === "success" ? (
+                    <>
                     <Check className="w-4 h-4" />
                     Message envoyé !
                   </>
@@ -435,16 +435,16 @@ export const ContactSection = () => {
                   <>
                     <AlertCircle className="w-4 h-4" />
                     Erreur, réessayer
-                  </>
-                ) : (
-                  <>
+                    </>
+                  ) : (
+                    <>
                     <Send className="w-4 h-4" />
                     Envoyer le message
-                  </>
-                )}
+                    </>
+                  )}
               </button>
-            </form>
-          </div>
+              </form>
+            </div>
         </motion.div>
       </div>
     </section>

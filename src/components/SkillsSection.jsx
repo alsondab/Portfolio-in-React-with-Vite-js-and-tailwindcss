@@ -292,10 +292,10 @@ export const SkillsSection = () => {
 
         {/* Category filters */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categoryGroups.map((category) => (
+            {categoryGroups.map((category) => (
             <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
               className={cn(
                 "px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300",
                 "bg-card/50 border border-border/50 backdrop-blur-sm shadow-sm",
@@ -303,7 +303,7 @@ export const SkillsSection = () => {
                 activeCategory === category.id && "bg-primary/10 text-primary border-primary/30"
               )}
             >
-              {category.icon}
+                  {category.icon}
               <span>{category.label}</span>
             </button>
           ))}
@@ -329,8 +329,8 @@ export const SkillsSection = () => {
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-muted-foreground">{skill.level}%</span>
                     <span className="text-xs text-muted-foreground">({getLevelText(skill.level)})</span>
-                  </div>
-                </div>
+              </div>
+              </div>
                 <div className="w-full h-2 bg-secondary/30 rounded-full overflow-hidden mb-3">
                   <motion.div
                     className={cn("h-full rounded-full bg-gradient-to-r", skill.color)}

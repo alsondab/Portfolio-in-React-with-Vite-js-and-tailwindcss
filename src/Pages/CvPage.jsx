@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Linkedin, Github, Briefcase, Code, Star, Award, Globe, BookOpen, Zap, Users, Target, CheckCircle, Calendar, GraduationCap, Search } from 'lucide-react';
+import { Phone, Mail, MapPin, Linkedin, Github, Briefcase, Code, Star, Award, Globe, BookOpen, Zap, Users, Target, CheckCircle, Calendar, GraduationCap, Search, Building2 } from 'lucide-react';
 
 export default function CVPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,11 +9,30 @@ export default function CVPage() {
   }, []);
 
   const skills = [
-    { name: 'React & Vite', level: 65, color: 'bg-blue-500' },
-    { name: 'JavaScript', level: 60, color: 'bg-yellow-500' },
-    { name: 'TailwindCSS', level: 60, color: 'bg-cyan-500' },
-    { name: 'MySQL', level: 60, color: 'bg-orange-500' },
-    { name: 'Git/GitHub', level: 70, color: 'bg-purple-500' }
+    {
+      category: 'Frontend',
+      items: [
+        { name: 'React & Next.js', level: 75, color: 'bg-blue-500' },
+        { name: 'JavaScript/TypeScript', level: 70, color: 'bg-yellow-500' },
+        { name: 'TailwindCSS/SCSS', level: 80, color: 'bg-cyan-500' },
+      ]
+    },
+    {
+      category: 'Backend',
+      items: [
+        { name: 'Node.js/Express', level: 65, color: 'bg-green-500' },
+        { name: 'Django/Python', level: 60, color: 'bg-purple-500' },
+        { name: 'MySQL/PostgreSQL', level: 60, color: 'bg-orange-500' },
+      ]
+    },
+    {
+      category: 'Outils & Méthodes',
+      items: [
+        { name: 'Git/GitHub', level: 75, color: 'bg-gray-700' },
+        { name: 'Agile/Scrum', level: 65, color: 'bg-blue-600' },
+        { name: 'CI/CD', level: 55, color: 'bg-red-500' },
+      ]
+    }
   ];
 
   const projects = [
@@ -39,30 +58,72 @@ export default function CVPage() {
 
   const experiences = [
     {
-      title: 'Développeur Web Junior (Stage)',
-      company: 'Recherche active de stage',
-      period: '2025 - À définir',
-      description: 'En recherche active d\'une opportunité de stage pour mettre en pratique mes compétences :',
+      title: 'Développeur Full-Stack (Stage)',
+      company: 'En recherche active',
+      period: '2024',
       type: 'stage',
-      skills: ['Développement Full-Stack', 'Architecture Moderne', 'Méthodologies Agiles'],
+      status: 'searching',
+      description: 'À la recherche d\'une opportunité de stage pour mettre en pratique mes compétences en développement web moderne.',
       objectives: [
-        'Contribuer à des projets d\'envergure avec Next.js et React',
-        'Participer au développement d\'APIs RESTful',
-        'Collaborer au sein d\'une équipe technique expérimentée'
-      ]
+        'Développement d\'applications web avec React/Next.js',
+        'Participation à la conception et développement d\'APIs',
+        'Collaboration au sein d\'une équipe technique',
+        'Application des méthodologies Agile/Scrum'
+      ],
+      technologies: ['React', 'Next.js', 'Node.js', 'TypeScript', 'REST APIs']
     },
     {
-      title: 'Projets Freelance',
-      company: 'Travail indépendant',
+      title: 'Développeur Web Freelance',
+      company: 'Projets Indépendants',
       period: '2023 - Présent',
-      description: 'Conception et développement de solutions web personnalisées :',
       type: 'freelance',
+      status: 'active',
+      description: 'Conception et développement de solutions web sur mesure pour divers clients.',
       achievements: [
-        'Développement de sites vitrines et e-commerce avec Next.js',
-        'Intégration de systèmes de paiement et d\'authentification',
-        'Optimisation SEO et performance des applications'
+        'Développement de sites vitrines et applications web',
+        'Intégration de systèmes de paiement et authentification',
+        'Optimisation des performances et du SEO',
+        'Maintenance et mise à jour des applications'
       ],
-      technologies: ['Next.js', 'React', 'Node.js', 'TailwindCSS', 'PostgreSQL']
+      technologies: ['React', 'Next.js', 'TailwindCSS', 'Node.js', 'PostgreSQL']
+    },
+    {
+      title: 'Projets Académiques',
+      company: 'Université UTA',
+      period: '2022 - 2023',
+      type: 'academic',
+      status: 'completed',
+      description: 'Réalisation de projets pratiques dans le cadre de ma formation en génie logiciel.',
+      achievements: [
+        'Développement d\'une plateforme de gestion des anciens sujets',
+        'Création d\'une application de transfert d\'argent (clone Wave)',
+        'Participation à des projets d\'équipe agiles',
+        'Présentation technique des projets'
+      ],
+      technologies: ['React', 'Django', 'MySQL', 'Git', 'Agile']
+    }
+  ];
+
+  const education = [
+    {
+      degree: 'Licence en Génie Logiciel',
+      school: 'Université UTA',
+      period: '2021 - 2024',
+      location: 'Abidjan, Côte d\'Ivoire',
+      status: 'En cours',
+      description: 'Formation approfondie en développement logiciel et conception d\'applications.',
+      achievements: [
+        'Spécialisation en développement web et applications mobiles',
+        'Projets pratiques en équipe avec méthodologies agiles',
+        'Maîtrise des concepts fondamentaux de programmation',
+        'Participation active aux événements tech de l\'université'
+      ],
+      courses: [
+        'Architectures Logicielles',
+        'Développement Web Avancé',
+        'Bases de Données',
+        'Génie Logiciel'
+      ]
     }
   ];
 
@@ -215,33 +276,54 @@ export default function CVPage() {
               <h2 className="text-xl font-bold text-gray-800">Compétences Techniques</h2>
             </div>
 
-            <div className="space-y-4">
-              {skills.map((skill, index) => (
-                <div key={index} className="group">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
-                      {skill.name}
-                    </span>
-                    <span className="text-sm text-gray-500">{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                    <div
-                      className={`h-full ${skill.color} rounded-full transition-all duration-1000 ease-out transform origin-left hover:scale-x-105`}
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
-                  </div>
+            <div className="space-y-8">
+              {skills.map((category, idx) => (
+                <div key={idx} className="space-y-4">
+                  <h3 className="font-semibold text-gray-700 mb-3 flex items-center">
+                    {category.category === 'Frontend' && <Globe className="w-4 h-4 mr-2 text-blue-500" />}
+                    {category.category === 'Backend' && <Code className="w-4 h-4 mr-2 text-green-500" />}
+                    {category.category === 'Outils & Méthodes' && <Briefcase className="w-4 h-4 mr-2 text-gray-500" />}
+                    {category.category}
+                  </h3>
+                  
+                  {category.items.map((skill, index) => (
+                    <div key={index} className="group">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
+                          {skill.name}
+                        </span>
+                        <span className="text-sm text-gray-500">{skill.level}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                        <div
+                          className={`h-full ${skill.color} rounded-full transition-all duration-1000 ease-out transform origin-left group-hover:scale-x-105`}
+                          style={{ width: `${skill.level}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <h3 className="font-semibold text-gray-800 mb-3 flex items-center">
-                <Globe className="w-4 h-4 mr-2 text-blue-500" />
-                Technologies Additionnelles
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <h3 className="font-semibold text-gray-800 mb-4 flex items-center">
+                <Star className="w-4 h-4 mr-2 text-yellow-500" />
+                Technologies & Outils Maîtrisés
               </h3>
               <div className="flex flex-wrap gap-2">
-                {['HTML5&CSS3', 'Next.js', 'Angular', 'Node.js', 'Express', 'Django', 'MySQL', 'Git', 'Netlify', 'Vercel', 'shadcn/ui', 'T3 Stack', 'next-starter-leerob', 'ShipFast', 'NOWTS.APP', 'Neon DB', 'Cursor', 'tweakcn.com', '21st.dev'].map((tech, index) => (
-                  <span key={index} className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-xs rounded-full hover:from-blue-200 hover:to-purple-200 transition-all cursor-pointer transform hover:scale-105">
+                {[
+                  'HTML5/CSS3', 'React.js', 'Next.js', 'TypeScript', 'TailwindCSS',
+                  'Node.js', 'Express', 'Django', 'PostgreSQL', 'Git/GitHub',
+                  'REST APIs', 'Responsive Design', 'UI/UX', 'Agile/Scrum',
+                  'Testing (Jest)', 'CI/CD', 'Docker', 'AWS Basics'
+                ].map((tech, index) => (
+                  <span 
+                    key={index} 
+                    className="px-3 py-1.5 bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-sm rounded-lg
+                             border border-gray-200 hover:border-blue-300 hover:from-blue-50 hover:to-blue-100 
+                             transition-all cursor-default transform hover:scale-105 hover:shadow-sm"
+                  >
                     {tech}
                   </span>
                 ))}
@@ -335,96 +417,80 @@ export default function CVPage() {
         {/* Right Column - Enhanced */}
         <div className="lg:col-span-2 space-y-8">
 
-          {/* Experience Section */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
+          {/* Enhanced Experiences Section */}
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 border border-white/20 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center mb-8">
               <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4">
                 <Briefcase className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-800">Expérience & Recherche</h2>
+              <h2 className="text-xl font-bold text-gray-800">Expérience Professionnelle</h2>
             </div>
 
             <div className="space-y-8">
-              {experiences.map((exp, index) => (
-                <div key={index} className="relative">
-                  <div className="flex">
-                    <div className={`w-1 ${exp.type === 'stage' ? 'bg-gradient-to-b from-orange-500 to-red-500' : 'bg-gradient-to-b from-blue-500 to-purple-500'} rounded-full mr-6`}></div>
-                    <div className="flex-1">
-                      <div className={`rounded-xl p-6 transition-all duration-300 ${
-                        exp.type === 'stage' 
-                          ? 'bg-orange-50 border-2 border-orange-200 hover:border-orange-300' 
-                          : 'bg-blue-50 border-2 border-blue-200 hover:border-blue-300'
-                      }`}>
-                        <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                          <div>
-                            <h3 className="text-xl font-semibold text-gray-800 mb-1">{exp.title}</h3>
-                            <p className={`font-medium ${exp.type === 'stage' ? 'text-orange-600' : 'text-blue-600'}`}>
-                              {exp.company}
-                            </p>
-                          </div>
-                          <div className="mt-2 md:mt-0 flex items-center gap-3">
-                            <span className="text-sm text-gray-500">{exp.period}</span>
-                            <span className={`px-3 py-1 rounded-full text-xs ${
-                              exp.type === 'stage' 
-                                ? 'bg-orange-100 text-orange-800' 
-                                : 'bg-blue-100 text-blue-800'
-                            }`}>
-                              {exp.type === 'stage' ? 'Recherche Active' : 'En cours'}
-                            </span>
-                          </div>
-                        </div>
+              {experiences.map((experience, index) => (
+                <div key={index} className="relative pl-8 pb-8 group">
+                  {/* Timeline line */}
+                  {index !== experiences.length - 1 && (
+                    <div className="absolute left-3 top-3 bottom-0 w-0.5 bg-gray-200 group-hover:bg-blue-200 transition-colors duration-300"></div>
+                  )}
+                  
+                  {/* Timeline dot */}
+                  <div className="absolute left-0 top-0 w-6 h-6 rounded-full border-4 border-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md group-hover:scale-110 transition-transform duration-300"></div>
 
-                        <p className="text-gray-600 mb-4">{exp.description}</p>
-
-                        {exp.type === 'stage' ? (
-                          <>
-                            <div className="mb-4">
-                              <div className="flex flex-wrap gap-2 mb-3">
-                                {exp.skills.map((skill, idx) => (
-                                  <span key={idx} className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm">
-                                    {skill}
-                                  </span>
-                                ))}
-                              </div>
-                              <ul className="space-y-2">
-                                {exp.objectives.map((objective, idx) => (
-                                  <li key={idx} className="flex items-start">
-                                    <CheckCircle className="w-5 h-5 text-orange-500 mr-2 flex-shrink-0 mt-0.5" />
-                                    <span className="text-gray-600">{objective}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            <div className="mt-4 flex justify-end">
-                              <a
-                                href="mailto:contact@alidabo.site"
-                                className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium"
-                              >
-                                <Mail className="w-4 h-4" />
-                                Me contacter pour un stage
-                              </a>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <ul className="space-y-2 mb-4">
-                              {exp.achievements.map((achievement, idx) => (
-                                <li key={idx} className="flex items-start">
-                                  <CheckCircle className="w-5 h-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
-                                  <span className="text-gray-600">{achievement}</span>
-                                </li>
-                              ))}
-                            </ul>
-                            <div className="flex flex-wrap gap-2">
-                              {exp.technologies.map((tech, idx) => (
-                                <span key={idx} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </>
+                  <div className="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-all duration-300">
+                    {/* Status badge */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <h3 className="font-bold text-gray-800 text-lg">{experience.title}</h3>
+                        {experience.status === 'searching' && (
+                          <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
+                            En recherche
+                          </span>
+                        )}
+                        {experience.status === 'active' && (
+                          <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
+                            En cours
+                          </span>
+                        )}
+                        {experience.status === 'completed' && (
+                          <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
+                            Complété
+                          </span>
                         )}
                       </div>
+                      <span className="text-sm text-gray-500 flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        {experience.period}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center text-gray-700 mb-4">
+                      <Building2 className="w-4 h-4 mr-2 text-gray-500" />
+                      <span className="font-medium">{experience.company}</span>
+                    </div>
+
+                    <p className="text-gray-600 mb-4">{experience.description}</p>
+
+                    {/* Achievements/Objectives */}
+                    <div className="space-y-2 mb-4">
+                      {(experience.achievements || experience.objectives)?.map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                          <span className="text-gray-600">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {experience.technologies.map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2.5 py-1 bg-gray-100 text-gray-600 text-sm rounded-md hover:bg-gray-200 transition-colors duration-200"
+                        >
+                          {tech}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -464,56 +530,74 @@ export default function CVPage() {
           </div>
 
           {/* Enhanced Education */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 border border-white/20 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center mb-8">
-              <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
-                <BookOpen className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center mr-4">
+                <GraduationCap className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-800">Formation Académique</h2>
+              <h2 className="text-xl font-bold text-gray-800">Formation</h2>
             </div>
 
-            <div className="space-y-6">
-              {[
-                {
-                  degree: 'Licence en Informatique de Génie Logiciel',
-                  school: 'Université de Technologie d\'Abidjan',
-                  year: '2022-2025',
-                  status: 'En cours',
-                  color: 'from-blue-500 to-cyan-500',
-                  current: true
-                },
-                {
-                  degree: 'BSc. Business Management System',
-                  school: 'Wisconsin University College, Accra, Ghana',
-                  year: '2020-2022',
-                  status: 'Diplômé',
-                  color: 'from-green-500 to-emerald-500'
-                },
-                {
-                  degree: 'Baccalauréat Série A1',
-                  school: 'Lycée Ahmed Khadim OYABI, Gabon',
-                  year: '2019',
-                  status: 'Obtenu',
-                  color: 'from-purple-500 to-pink-500'
-                }
-              ].map((education, index) => (
-                <div key={index} className="relative">
-                  <div className="flex">
-                    <div className={`w-1 bg-gradient-to-b ${education.color} rounded-full mr-6`}></div>
-                    <div className="flex-1 pb-6">
-                      <div className={`${education.current ? 'bg-blue-50 border-2 border-blue-200' : 'bg-gray-50'} rounded-xl p-6 hover:shadow-md transition-shadow`}>
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-lg font-semibold text-gray-800">{education.degree}</h3>
-                          {education.current && (
-                            <span className="px-3 py-1 bg-blue-500 text-white text-xs rounded-full animate-pulse">
-                              En cours
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-blue-600 font-medium mb-1">{education.school}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-gray-600">{education.year}</span>
-                        </div>
+            <div className="space-y-8">
+              {education.map((edu, index) => (
+                <div key={index} className="relative pl-8">
+                  {/* Timeline dot */}
+                  <div className="absolute left-0 top-0 w-6 h-6 rounded-full border-4 border-white bg-gradient-to-r from-purple-500 to-indigo-500 shadow-md"></div>
+
+                  <div className="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-all duration-300">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <h3 className="font-bold text-gray-800 text-lg">{edu.degree}</h3>
+                        <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
+                          {edu.status}
+                        </span>
+                      </div>
+                      <span className="text-sm text-gray-500 flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        {edu.period}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center text-gray-700 mb-4">
+                      <Building2 className="w-4 h-4 mr-2 text-gray-500" />
+                      <span className="font-medium">{edu.school}</span>
+                      <MapPin className="w-4 h-4 ml-4 mr-1 text-gray-500" />
+                      <span className="text-gray-600">{edu.location}</span>
+                    </div>
+
+                    <p className="text-gray-600 mb-6">{edu.description}</p>
+
+                    {/* Achievements */}
+                    <div className="mb-6">
+                      <h4 className="font-semibold text-gray-700 mb-3 flex items-center">
+                        <Award className="w-4 h-4 mr-2 text-yellow-500" />
+                        Réalisations Principales
+                      </h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {edu.achievements.map((achievement, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                            <span className="text-gray-600">{achievement}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Courses */}
+                    <div>
+                      <h4 className="font-semibold text-gray-700 mb-3 flex items-center">
+                        <BookOpen className="w-4 h-4 mr-2 text-blue-500" />
+                        Cours Principaux
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {edu.courses.map((course, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1.5 bg-gray-100 text-gray-600 text-sm rounded-lg hover:bg-gray-200 transition-colors duration-200"
+                          >
+                            {course}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
