@@ -22,6 +22,7 @@ export default function CVPage() {
       items: [
         { name: 'Node.js/Express', level: 65, color: 'bg-green-500' },
         { name: 'Django/Python', level: 60, color: 'bg-purple-500' },
+        { name: 'Supabase', level: 55, color: 'bg-emerald-500' },
         { name: 'MySQL/PostgreSQL', level: 60, color: 'bg-orange-500' },
       ]
     },
@@ -29,7 +30,7 @@ export default function CVPage() {
       category: 'Mobile',
       items: [
         { name: 'React Native', level: 55, color: 'bg-indigo-500' },
-        { name: 'Flutter', level: 45, color: 'bg-teal-500' },
+        { name: 'Expo', level: 50, color: 'bg-blue-500' },
         { name: 'Mobile UI/UX', level: 50, color: 'bg-pink-500' },
       ]
     },
@@ -227,7 +228,7 @@ export default function CVPage() {
           </div>
           <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
             Passionné par le développement web moderne avec <span className="font-medium text-blue-600">Next.js</span> et l'écosystème React,
-            ainsi que par le développement mobile avec <span className="font-medium text-indigo-600">React Native</span> et <span className="font-medium text-teal-600">Flutter</span>.
+            ainsi que par le développement mobile cross-platform avec <span className="font-medium text-indigo-600">React Native</span>.
             Je combine créativité technique et approche pragmatique pour créer des applications performantes et évolutives, que ce soit pour le web ou mobile.
             À la recherche d'une opportunité de stage pour contribuer à des projets innovants et enrichir mon expertise technique.
           </p>

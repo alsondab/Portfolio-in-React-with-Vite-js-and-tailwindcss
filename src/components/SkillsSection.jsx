@@ -62,21 +62,21 @@ const skills = [
     name: "React Native",
     level: 55,
     category: "mobile",
-    description: "Développement d'applications mobiles cross-platform, navigation, state management",
+    description: "Développement d'applications mobiles cross-platform (iOS & Android), navigation, state management, animations natives",
     color: "from-indigo-400 to-indigo-600"
   },
   {
-    name: "Flutter",
-    level: 45,
+    name: "Expo",
+    level: 50,
     category: "mobile",
-    description: "Développement d'applications mobiles avec Dart, widgets, animations",
-    color: "from-teal-400 to-teal-600"
+    description: "Développement rapide avec Expo SDK, gestion des builds, déploiement OTA, accès aux fonctionnalités natives",
+    color: "from-blue-400 to-blue-600"
   },
   {
     name: "Mobile UI/UX",
     level: 50,
     category: "mobile",
-    description: "Design d'interfaces mobiles, expérience utilisateur, guidelines",
+    description: "Design d'interfaces mobiles, expérience utilisateur, guidelines iOS & Android",
     color: "from-pink-400 to-pink-600"
   },
 
@@ -87,6 +87,13 @@ const skills = [
     category: "backend",
     description: "APIs RESTful, middlewares, event handling",
     color: "from-green-500 to-green-700"
+  },
+  {
+    name: "Supabase",
+    level: 55,
+    category: "backend",
+    description: "Backend-as-a-Service, authentification, base de données temps réel, stockage de fichiers",
+    color: "from-emerald-500 to-emerald-700"
   },
   {
     name: "MongoDB",
