@@ -110,11 +110,11 @@ export const AboutSection = () => {
             </div>
 
             <p className="text-base md:text-lg leading-relaxed">
-              Je suis <span className="font-semibold text-primary">Ali Dabo</span>, un développeur front-end passionné et étudiant en troisième année de Licence en Génie Logiciel à l'Université de Technologie d'Abidjan. Fort d'une curiosité insatiable pour les nouvelles technologies, je m'efforce de créer des interfaces utilisateur intuitives, esthétiques et performantes.
+              Je suis <span className="font-semibold text-primary">Ali Dabo</span>, un développeur front-end et mobile passionné et étudiant en troisième année de Licence en Génie Logiciel à l'Université de Technologie d'Abidjan. Fort d'une curiosité insatiable pour les nouvelles technologies, je m'efforce de créer des interfaces utilisateur intuitives, esthétiques et performantes, que ce soit pour le web ou les applications mobiles.
             </p>
 
             <p className="text-base md:text-lg leading-relaxed">
-              Bilingue et doté d'un bon sens de la communication, j'aime travailler en équipe et relever de nouveaux défis techniques. Mon objectif est de contribuer à des projets innovants qui ont un impact positif et j'aspire à devenir un développeur Full-Stack JavaScript.
+              Bilingue et doté d'un bon sens de la communication, j'aime travailler en équipe et relever de nouveaux défis techniques. Mon objectif est de contribuer à des projets innovants qui ont un impact positif et j'aspire à devenir un développeur Full-Stack JavaScript avec une expertise en développement mobile.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
@@ -153,9 +153,9 @@ export const AboutSection = () => {
                       <Code className="h-6 w-6 text-primary" />
                     </div>
                     <div className="text-left">
-                      <h4 className="font-semibold text-lg group-hover:text-primary transition-colors duration-300">Développement Web</h4>
+                      <h4 className="font-semibold text-lg group-hover:text-primary transition-colors duration-300">Développement Web & Mobile</h4>
                       <p className="text-muted-foreground mt-2">
-                        Création de sites web réactifs et d'applications web avec des frameworks modernes comme React, Next.js et TailwindCSS.
+                        Création de sites web réactifs, d'applications web et mobiles avec des frameworks modernes comme React, Next.js, React Native, Flutter et TailwindCSS.
                       </p>
                     </div>
                   </div>

@@ -5,15 +5,6 @@ import { ExternalLink, Github, Play, Code, Clock } from 'lucide-react';
 
 const projectsData = [
   {
-    title: "Portfolio V1",
-    description: "Ma première plateforme personnelle, entièrement construite à l'aide de **HTML, CSS et JavaScript vanilla**. Ce projet a été un excellent défi pour appliquer mes connaissances et comprendre en profondeur comment les éléments interagissent. J'y ai découvert l'importance du **design responsive et de la logique front-end**, posant les premières pierres de mon parcours de développeur.",
-    imageSrc: "Portfolio.png",
-    tags: ["HTML", "CSS", "JavaScript"],
-    liveLink: "https://alsondabportf.netlify.app/",
-    repoLink: "https://github.com/alsondab/Portfolio_Html-Css.git",
-    status: "completed"
-  },
-  {
     title: "Application de Rafistoleur",
     description: "Rafistoleurs App est une application innovante visant à moderniser la recherche de rafistoleurs ('toclo toclo') en Côte d'Ivoire. Elle permet aux rafistoleurs de s'inscrire, de mettre à jour leur disponibilité et de se connecter avec des clients potentiels dans leur voisinage. Les clients peuvent rechercher des rafistoleurs disponibles et les contacter directement via l'application.",
     imageSrc: "Rafisto.png",
@@ -32,11 +23,20 @@ const projectsData = [
     status: "in-progress"
   },
   {
-    title: "Wave Cloning",
-    description: "Une application de transfert d'argent inspirée de Wave, développée en collaboration avec mon condisciple. Ce projet utilise React pour l'interface utilisateur et localStorage pour la gestion des données côté client. L'application permet aux utilisateurs de simuler des transferts d'argent et de gérer leur solde virtuel.",
-    imageSrc: "wave-clone.png",
-    tags: ["React", "localStorage", "Tailwind CSS"],
-    repoLink: "https://github.com/AgohChris/WaveClonning.git",
+    title: "Portfolio V1",
+    description: "Ma première plateforme personnelle, entièrement construite à l'aide de **HTML, CSS et JavaScript vanilla**. Ce projet a été un excellent défi pour appliquer mes connaissances et comprendre en profondeur comment les éléments interagissent. J'y ai découvert l'importance du **design responsive et de la logique front-end**, posant les premières pierres de mon parcours de développeur.",
+    imageSrc: "Portfolio.png",
+    tags: ["HTML", "CSS", "JavaScript"],
+    liveLink: "https://alsondabportf.netlify.app/",
+    repoLink: "https://github.com/alsondab/Portfolio_Html-Css.git",
+    status: "completed"
+  },
+  {
+    title: "Application Mobile de Gestion de Tâches",
+    description: "Une application mobile de gestion de tâches développée avec React Native. Cette application permet aux utilisateurs de créer, organiser et suivre leurs tâches quotidiennes avec des fonctionnalités comme les catégories, les rappels et la synchronisation locale. Interface utilisateur intuitive et animations fluides pour une expérience mobile optimale.",
+    imageSrc: "todo-app.png",
+    tags: ["React Native", "Redux", "AsyncStorage"],
+    repoLink: "https://github.com/alsondab/TodoApp-ReactNative",
     status: "completed"
   }
 ];
@@ -141,7 +141,7 @@ export const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 auto-rows-max">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 auto-rows-max">
           {projectsData.map((project, index) => (
             <motion.div
               key={index}
@@ -149,11 +149,8 @@ export const ProjectsSection = () => {
               variants={projectCardVariants}
               whileHover="hover"
             >
-              {/* Status badge */}
               {renderStatusBadge(project.status, project.isVideo)}
-
-              {/* Project image */}
-              <div className="relative h-64 w-full overflow-hidden group" style={{ aspectRatio: '16/9' }}>
+              <div className="relative h-64 w-full overflow-hidden group">
                 <img
                   alt={project.title}
                   className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105 filter brightness-95 group-hover:brightness-100"
@@ -163,40 +160,31 @@ export const ProjectsSection = () => {
                   fetchPriority={index === 0 ? "high" : "low"}
                   width={640}
                   height={360}
-                  style={{ aspectRatio: '16/9' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-70 group-hover:opacity-60 transition-opacity duration-300"></div>
-
-                {/* Project title overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                   <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg">
                     {project.title}
                   </h3>
-
-                {/* Tags positioned over the image at bottom */}
-                <motion.div
+                  <motion.div
                     className="flex flex-wrap gap-2"
-                  variants={tagVariants}
-                >
-                  {project.tags.map(tag => (
-                    <span
-                      key={tag}
+                    variants={tagVariants}
+                  >
+                    {project.tags.map(tag => (
+                      <span
+                        key={tag}
                         className="inline-block bg-white/90 text-gray-900 dark:bg-gray-900/90 dark:text-gray-100 text-xs font-semibold px-2.5 py-1 rounded-full shadow-md backdrop-blur-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </motion.div>
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </motion.div>
                 </div>
               </div>
-
-              {/* Project content */}
               <div className="p-6 flex flex-col flex-grow bg-card/50 backdrop-blur-sm border-t border-border/50">
                 <p className="text-muted-foreground text-sm mb-6 flex-grow">
                   {project.description}
                 </p>
-
-                {/* Project links */}
                 <div className="flex gap-3 mt-auto">
                   {project.liveLink && (
                     <a

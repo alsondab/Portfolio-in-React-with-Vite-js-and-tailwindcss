@@ -141,7 +141,7 @@ export const HeroSection = () => {
               variants={fadeIn}
             >
               <Terminal className="w-4 h-4" />
-              <span>Développeur Full-Stack</span>
+              <span>Développeur Full-Stack & Mobile</span>
             </motion.div>
 
             <motion.h1
@@ -164,8 +164,8 @@ export const HeroSection = () => {
             animate={isVisible ? "visible" : "hidden"}
             variants={fadeIn}
           >
-            <span className="text-primary font-medium">Je crée des expériences web exceptionnelles</span> avec des technologies modernes.
-            Spécialisé en développement front-end, je construis des interfaces
+            <span className="text-primary font-medium">Je crée des expériences web et mobiles exceptionnelles</span> avec des technologies modernes.
+            Spécialisé en développement front-end et mobile, je construis des interfaces
             aussi belles que fonctionnelles avec un focus sur l'expérience utilisateur.
           </motion.p>
 

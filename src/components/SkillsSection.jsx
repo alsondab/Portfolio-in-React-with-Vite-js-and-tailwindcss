@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { Code, Server, Wrench, Monitor, ChevronRight } from "lucide-react";
+import { Code, Server, Wrench, Monitor, ChevronRight, Smartphone } from "lucide-react";
 import { cn } from "../lib/utils";
 
 // Données des compétences avec structure améliorée
@@ -55,6 +55,29 @@ const skills = [
     category: "frontend",
     description: "Server-side rendering, routing, API routes",
     color: "from-gray-700 to-gray-900"
+  },
+
+  // Mobile
+  {
+    name: "React Native",
+    level: 55,
+    category: "mobile",
+    description: "Développement d'applications mobiles cross-platform, navigation, state management",
+    color: "from-indigo-400 to-indigo-600"
+  },
+  {
+    name: "Flutter",
+    level: 45,
+    category: "mobile",
+    description: "Développement d'applications mobiles avec Dart, widgets, animations",
+    color: "from-teal-400 to-teal-600"
+  },
+  {
+    name: "Mobile UI/UX",
+    level: 50,
+    category: "mobile",
+    description: "Design d'interfaces mobiles, expérience utilisateur, guidelines",
+    color: "from-pink-400 to-pink-600"
   },
 
   // Backend
@@ -187,6 +210,12 @@ const categoryGroups = [
     label: "Frontend",
     icon: <Monitor />,
     description: "Développement d'interfaces utilisateurs interactives et réactives"
+  },
+  {
+    id: "mobile",
+    label: "Mobile",
+    icon: <Smartphone />,
+    description: "Développement d'applications mobiles cross-platform"
   },
   {
     id: "backend",

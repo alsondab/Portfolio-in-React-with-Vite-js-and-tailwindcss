@@ -26,6 +26,14 @@ export default function CVPage() {
       ]
     },
     {
+      category: 'Mobile',
+      items: [
+        { name: 'React Native', level: 55, color: 'bg-indigo-500' },
+        { name: 'Flutter', level: 45, color: 'bg-teal-500' },
+        { name: 'Mobile UI/UX', level: 50, color: 'bg-pink-500' },
+      ]
+    },
+    {
       category: 'Outils & Méthodes',
       items: [
         { name: 'Git/GitHub', level: 75, color: 'bg-gray-700' },
@@ -218,8 +226,9 @@ export default function CVPage() {
             <span className="px-4 py-2 bg-green-50 text-green-700 rounded-full font-medium">Recherche Stage 2024</span>
           </div>
           <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
-            Passionné par le développement web moderne avec <span className="font-medium text-blue-600">Next.js</span> et l'écosystème React.
-            Je combine créativité technique et approche pragmatique pour créer des applications performantes et évolutives.
+            Passionné par le développement web moderne avec <span className="font-medium text-blue-600">Next.js</span> et l'écosystème React,
+            ainsi que par le développement mobile avec <span className="font-medium text-indigo-600">React Native</span> et <span className="font-medium text-teal-600">Flutter</span>.
+            Je combine créativité technique et approche pragmatique pour créer des applications performantes et évolutives, que ce soit pour le web ou mobile.
             À la recherche d'une opportunité de stage pour contribuer à des projets innovants et enrichir mon expertise technique.
           </p>
         </div>
@@ -236,7 +245,7 @@ export default function CVPage() {
             <div className="bg-white rounded-xl p-6 shadow-md">
               <Code className="w-8 h-8 text-blue-500 mx-auto mb-4" />
               <h3 className="font-semibold text-gray-800 mb-2">Développement Technique</h3>
-              <p className="text-gray-600 text-sm">Approfondir mes compétences en développement web dans un environnement professionnel</p>
+              <p className="text-gray-600 text-sm">Approfondir mes compétences en développement web et mobile dans un environnement professionnel</p>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-md">
               <Users className="w-8 h-8 text-green-500 mx-auto mb-4" />
@@ -282,6 +291,7 @@ export default function CVPage() {
                   <h3 className="font-semibold text-gray-700 mb-3 flex items-center">
                     {category.category === 'Frontend' && <Globe className="w-4 h-4 mr-2 text-blue-500" />}
                     {category.category === 'Backend' && <Code className="w-4 h-4 mr-2 text-green-500" />}
+                    {category.category === 'Mobile' && <Briefcase className="w-4 h-4 mr-2 text-gray-500" />}
                     {category.category === 'Outils & Méthodes' && <Briefcase className="w-4 h-4 mr-2 text-gray-500" />}
                     {category.category}
                   </h3>
