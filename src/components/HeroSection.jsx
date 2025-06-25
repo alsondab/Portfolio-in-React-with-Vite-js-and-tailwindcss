@@ -166,7 +166,8 @@ export const HeroSection = () => {
           >
             <span className="text-primary font-medium">Je crée des expériences web et mobiles exceptionnelles</span> avec des technologies modernes.
             Spécialisé en développement front-end et mobile, je construis des interfaces
-            aussi belles que fonctionnelles avec un focus sur l'expérience utilisateur.
+            aussi belles que fonctionnelles avec un focus sur l'expérience utilisateur.<br />
+            <span className="text-primary font-medium">Fasciné par le potentiel de l'IA, j'explore la création d'agents intelligents pour automatiser les processus et optimiser les solutions digitales.</span>
           </motion.p>
 
           <motion.div

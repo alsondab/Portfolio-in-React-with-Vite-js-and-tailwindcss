@@ -36,7 +36,7 @@ const projectsData = [
     description: "Une application mobile de gestion de tâches développée avec React Native. Cette application permet aux utilisateurs de créer, organiser et suivre leurs tâches quotidiennes avec des fonctionnalités comme les catégories, les rappels et la synchronisation locale. Interface utilisateur intuitive et animations fluides pour une expérience mobile optimale.",
     imageSrc: "todo-app.png",
     tags: ["React Native", "Redux", "AsyncStorage"],
-    repoLink: "https://github.com/alsondab/TodoApp-ReactNative",
+    repoLink: "https://github.com/alsondab/Application-Mobile-de-Gestion-de-T-ches.git",
     status: "completed"
   }
 ];

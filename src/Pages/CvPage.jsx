@@ -229,8 +229,8 @@ export default function CVPage() {
           <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
             Passionné par le développement web moderne avec <span className="font-medium text-blue-600">Next.js</span> et l'écosystème React,
             ainsi que par le développement mobile cross-platform avec <span className="font-medium text-indigo-600">React Native</span>.
-            Je combine créativité technique et approche pragmatique pour créer des applications performantes et évolutives, que ce soit pour le web ou mobile.
-            À la recherche d'une opportunité de stage pour contribuer à des projets innovants et enrichir mon expertise technique.
+            Je combine créativité technique et approche pragmatique pour créer des applications performantes et évolutives.
+            Actuellement, j'élargis mes compétences à l'intelligence artificielle, me spécialisant dans la conception d'agents IA pour l'automatisation et l'optimisation des processus métier.
           </p>
         </div>
       </div>
