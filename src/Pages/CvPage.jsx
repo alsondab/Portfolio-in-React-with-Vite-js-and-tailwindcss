@@ -151,7 +151,7 @@ export default function CVPage() {
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="relative group">
               <div className="w-36 h-36 rounded-2xl overflow-hidden border-4 border-white/20 shadow-xl transform group-hover:scale-105 transition-all duration-300">
-                <img src="/public/portfolioProfil.png" alt="Photo de profil" className="w-full h-full object-cover" />
+                <img src="/PortfolioProfil.png" alt="Photo de profil" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="absolute -bottom-3 -right-1 bg-gradient-to-r from-orange-500 to-red-500 w-8 h-8 rounded-full border-4 border-white flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">

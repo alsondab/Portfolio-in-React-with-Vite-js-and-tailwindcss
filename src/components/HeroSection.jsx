@@ -293,7 +293,7 @@ export const HeroSection = () => {
 
               <div className="relative h-full w-full z-10">
                 <img
-                  src="/public/PortfolioProfil.png"
+                  src="/PortfolioProfil.png"
                   alt="Dabo Ali - Développeur Front-end"
                   className="h-full w-full object-contain object-center drop-shadow-2xl"
                   style={{
