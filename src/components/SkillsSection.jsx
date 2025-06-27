@@ -202,28 +202,6 @@ const skills = [
     description: "AI-powered code editing, pair programming",
     color: "from-purple-500 to-purple-700"
   },
-  // Ajout outils AI agent
-  {
-    name: "LangChain",
-    level: 30,
-    category: "tools",
-    description: "Framework pour la création d'agents AI et de chaînes de prompts",
-    color: "from-blue-400 to-blue-700"
-  },
-  {
-    name: "Auto-GPT",
-    level: 20,
-    category: "tools",
-    description: "Agent autonome basé sur GPT pour l'automatisation avancée",
-    color: "from-green-400 to-green-700"
-  },
-  {
-    name: "OpenAI API",
-    level: 40,
-    category: "tools",
-    description: "Intégration d'IA générative et d'agents conversationnels",
-    color: "from-gray-400 to-gray-700"
-  },
 ];
 
 // Groupes de catégories avec icônes et descriptions

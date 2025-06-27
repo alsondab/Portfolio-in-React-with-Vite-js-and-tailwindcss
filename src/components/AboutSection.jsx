@@ -114,7 +114,7 @@ export const AboutSection = () => {
             </p>
 
             <p className="text-base md:text-lg leading-relaxed">
-              Bilingue et doté d'un bon sens de la communication, j'aime travailler en équipe et relever de nouveaux défis techniques. Ma passion pour la technologie s'étend à l'intelligence artificielle, et je me forme activement à la conception de solutions innovantes basées sur des agents IA pour optimiser et automatiser les processus.
+              Bilingue et doté d'un bon sens de la communication, j'aime travailler en équipe et relever de nouveaux défis techniques. Mon objectif est de contribuer à des projets innovants qui ont un impact positif et j'aspire à devenir un développeur Full-Stack JavaScript avec une expertise en développement mobile.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
