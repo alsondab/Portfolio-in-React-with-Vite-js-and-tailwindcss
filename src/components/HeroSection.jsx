@@ -297,7 +297,7 @@ export const HeroSection = () => {
                   alt="Dabo Ali - Développeur Front-end"
                   className="h-full w-full object-contain object-center drop-shadow-2xl"
                   style={{
-                    transform: `translateX(${mousePosition.x / 4}px) translateY(${mousePosition.y / 4}px) scale(1.05)`,
+                    transform: `translateX(${mousePosition.x / 4}px) translateY(${mousePosition.y / 4}px) scale(1.15)`,
                     transition: 'transform 0.5s ease-out'
                   }}
                 />
