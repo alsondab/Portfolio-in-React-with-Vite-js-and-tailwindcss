@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Système de couleurs amélioré avec meilleure cohérence */
+  /* Système de couleurs unifié */
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
   --color-secondary: hsl(var(--secondary));
@@ -14,70 +14,60 @@
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
   
-  /* Animations groupées pour une meilleure organisation */
-  --animate-duration-short: 0.3s;
-  --animate-duration-medium: 0.7s;
-  --animate-duration-long: 4s;
-  --animate-duration-extra-long: 6s;
-  
-  --animate-float: float var(--animate-duration-extra-long) ease-in-out infinite;
-  --animate-pulse-subtle: pulse-subtle var(--animate-duration-long) ease-in-out infinite;
-  --animate-fade-in: fade-in var(--animate-duration-medium) ease-out forwards;
-  --animate-fade-in-delay-1: fade-in var(--animate-duration-medium) ease-out 0.2s forwards;
-  --animate-fade-in-delay-2: fade-in var(--animate-duration-medium) ease-out 0.4s forwards;
-  --animate-fade-in-delay-3: fade-in var(--animate-duration-medium) ease-out 0.6s forwards;
-  --animate-fade-in-delay-4: fade-in var(--animate-duration-medium) ease-out 0.8s forwards;
+  /* Animations personnalisées essentielles */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.7s ease-out forwards;
   --animate-meteor: meteor 5s linear infinite;
+  --animate-shimmer: shimmer 1.5s ease-in-out infinite;
+  --animate-snowfall: snowfall 10s linear infinite;
   
-  /* Transitions standard pour cohérence */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
-  
-  /* Ombres standardisées */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  /* Effets spéciaux */
   --shadow-glow: 0 0 10px rgba(var(--primary-rgb), 0.6);
 
-  /* Définition des animations */
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
   }
-  
   @keyframes pulse-subtle {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.8; }
   }
-  
   @keyframes fade-in {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  
   @keyframes meteor {
     0% { transform: rotate(215deg) translateX(0); opacity: 1; }
     70% { opacity: 1; }
     100% { transform: rotate(215deg) translateX(-500px); opacity: 0; }
   }
-
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
   }
+  @keyframes snowfall {
+    0% { transform: translateY(-10%) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+  }
 }
-
+/* Force Tailwind v4 à injecter du CSS brut sans chercher à le compiler */
+@layer base {
+  spline-viewer::part(watermark) {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
 @layer base {
   :root {
-    /* Palette claire avec des couleurs plus harmonieuses */
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
     --border: 214 32% 91%;
     
-    /* Nouvelles couleurs thématiques */
     --primary: 222 66% 50%;
     --primary-foreground: 210 40% 98%;
     --primary-rgb: 25, 85, 185;
@@ -88,26 +78,22 @@
     --accent: 275 80% 60%;
     --accent-foreground: 210 40% 98%;
     
-    /* Couleurs d'état */
     --success: 142 70% 45%;
     --warning: 38 92% 50%;
     --error: 0 84% 60%;
     --info: 200 98% 45%;
 
-    /* Variables pour le fond */
     --tw-bg-background: #ffffff;
     --gradient-opacity: 0.05;
   }
 
   .dark {
-    /* Palette sombre améliorée avec contraste optimisé */
     --background: 222 47% 4%;
     --foreground: 213 31% 91%;
     --card: 222 47% 8%;
     --card-foreground: 213 31% 91%;
     --border: 217 33% 20%;
     
-    /* Couleurs thématiques adaptées au mode sombre */
     --primary: 213 70% 60%;
     --primary-foreground: 213 31% 91%;
     --primary-rgb: 79, 144, 255;
@@ -118,19 +104,17 @@
     --accent: 275 80% 65%;
     --accent-foreground: 213 31% 91%;
     
-    /* Couleurs d'état adaptées au mode sombre */
     --success: 142 70% 40%;
     --warning: 38 92% 45%;
     --error: 0 84% 65%;
     --info: 200 98% 50%;
 
-    /* Variables pour le fond sombre */
     --tw-bg-background: #0B1026;
     --gradient-opacity: 0.8;
   }
 
   * {
-    @apply border-border transition-colors duration-300;
+    @apply border-border;
   }
 
   html {
@@ -138,28 +122,24 @@
   }
 
   body {
-    @apply bg-background text-foreground transition-all duration-500;
+    @apply bg-background text-foreground transition-colors duration-500;
     font-feature-settings: "rlig" 1, "calt" 1;
-  }
-  
-  a, button {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 transition-all duration-300;
   }
 }
 
-/* Styles de transition globaux pour le thème */
+/* Transitions fluides pour le switch de thème global */
 .theme-transition,
 .theme-transition *,
 .theme-transition *:before,
 .theme-transition *:after {
-  transition: all 0.5s ease-in-out !important;
+  transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out !important;
   transition-delay: 0 !important;
 }
 
+/* Utilitaires structurels et effets graphiques */
 @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
-
   @media (width >= 640px) { max-width: 640px; }
   @media (width >= 768px) { max-width: 768px; }
   @media (width >= 1024px) { max-width: 1024px; }
@@ -168,20 +148,71 @@
 }
 
 @utility text-glow {
-  @apply relative;
   text-shadow: 0 0 12px rgba(var(--primary-rgb), 0.6);
 }
 
-@utility card-hover {
-  @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:-translate-y-1;
+@utility focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+}
+
+@utility content-section {
+  @apply py-16 relative;
+}
+
+/* Composants et Boutons */
+@utility cosmic-button {
+  @apply px-6 py-2 rounded-full font-medium transition-all duration-300 relative overflow-hidden focus-ring;
+  background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
+  color: hsl(var(--primary-foreground));
+  box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.4);
+  
+  &:hover {
+    box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
+    transform: scale(1.05);
+  }
+  &:active { transform: scale(0.98); }
+  &:after {
+    content: "";
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: rotate(30deg);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  &:hover:after {
+    animation: shimmer 1.5s ease-in-out forwards;
+    opacity: 1;
+  }
+}
+
+@utility badge {
+  @apply inline-flex items-center justify-center px-3 py-1 text-xs font-medium rounded-full bg-[hsl(var(--primary))/0.1] text-[hsl(var(--primary))] dark:bg-[hsl(var(--primary))/0.2];
+}
+
+/* Structures de cartes */
+@utility fancy-card {
+  @apply relative overflow-hidden rounded-xl p-6 border border-border bg-card transition-all duration-300;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 4px;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  &:hover:before { opacity: 1; }
 }
 
 @utility gradient-border {
   @apply relative rounded-md;
-  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
-  background-clip: padding-box;
+  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card))) padding-box;
   border: 1px solid transparent;
-  position: relative;
   
   &:before {
     content: "";
@@ -195,40 +226,7 @@
   }
 }
 
-@utility cosmic-button {
-  @apply px-6 py-2 rounded-full font-medium transition-all duration-300 relative overflow-hidden;
-  background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
-  color: hsl(var(--primary-foreground));
-  box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.4);
-  
-  &:hover {
-    box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
-    transform: scale(1.05);
-  }
-  
-  &:active {
-    transform: scale(0.98);
-  }
-  
-  &:after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: rotate(30deg);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  &:hover:after {
-    animation: shimmer 1.5s ease-in-out;
-    opacity: 1;
-  }
-}
-
+/* Décors & Particules */
 @utility star {
   @apply absolute rounded-full bg-white;
   box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
@@ -239,85 +237,18 @@
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
 }
 
-/* Animation de la neige améliorée */
-@keyframes snowfall {
-  0% { transform: translateY(-10%) rotate(0deg); }
-  100% { transform: translateY(110vh) rotate(360deg); }
-}
-
-/* Composant badge stylisé */
-@utility badge {
-  @apply inline-flex items-center justify-center px-3 py-1 text-xs font-medium rounded-full;
-  background-color: hsl(var(--primary) / 0.1);
-  color: hsl(var(--primary));
-  
-  .dark & {
-    background-color: hsl(var(--primary) / 0.2);
-  }
-}
-
-/* Card stylisée */
-@utility fancy-card {
-  @apply relative overflow-hidden rounded-xl p-6 border border-border bg-card;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-  
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-  }
-  
-  &:hover:before {
-    opacity: 1;
-  }
-}
-
-#root {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
-}
-
-/* Nouveaux utilitaires pour le focus */
-@utility focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
-}
-
-/* Amélioration de l'accessibilité pour les éléments interactifs */
-a:not([class]), button:not([class]) {
-  @apply transition-colors duration-300 focus-ring;
-}
-
-/* Styles pour les zones de contenu principales */
-@utility content-section {
-  @apply py-16 relative;
-}
-
-/* Styles pour les titres de section */
+/* Titres */
 @utility section-title {
   @apply text-3xl md:text-4xl font-bold mb-6 relative inline-block;
   
   &:after {
     content: "";
     position: absolute;
-    bottom: -8px;
-    left: 50%;
+    bottom: -8px; left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
+    width: 60px; height: 3px;
     background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
     border-radius: 3px;
   }
+  
 }
