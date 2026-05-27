@@ -17,7 +17,7 @@ const projectsData = [
   {
     titleKey: 'projects.items.mendelcorp.title',
     descriptionKey: 'projects.items.mendelcorp.description',
-    imageSrc: 'MendelTech.png',
+    imageSrc: 'Mendel.png',
     tags: ['React', 'Node.js', 'Express', 'MongoDB'],
     liveLink: 'https://mendel-c.vercel.app/',
     status: 'completed',
@@ -27,7 +27,7 @@ const projectsData = [
   {
     titleKey: 'projects.items.make.title',
     descriptionKey: 'projects.items.make.description',
-    imageSrc: 'Make.png',
+    imageSrc: 'Mke.png',
     tags: ['Make.com', 'LinkedIn', 'Airtable', 'OpenAI'],
     status: 'completed',
     category: 'personal',
@@ -55,7 +55,7 @@ const projectsData = [
   {
     titleKey: 'projects.items.dealon.title',
     descriptionKey: 'projects.items.dealon.description',
-    imageSrc: 'Dealon.png',
+    imageSrc: 'Delon.png',
     tags: ['React Native', 'Next.js', 'Supabase'],
     status: 'in-progress',
     liveLink: 'https://dealon-web.vercel.app/',
